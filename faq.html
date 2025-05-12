@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0"
+    />
+    <meta name="color-scheme" content="only light dark" />
+    <meta
+      name="theme-color"
+      content="#121212"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <title>FAQ - XoNote</title>
+    <meta
+      name="description"
+      content="Frequently Asked Questions about XoNote - Notes, Todo & Password Manager"
+    />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/dusfire/icon/css/style.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="site.webmanifest" />
+    <script>
+      // Configure Tailwind for dynamic theme changes
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "var(--bg-primary)",
+              secondary: "var(--bg-secondary)",
+              tertiary: "var(--bg-tertiary)",
+              accent: "var(--accent-color)",
+              "accent-hover": "var(--accent-hover)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="theme-transition min-h-screen flex flex-col">
+    <!-- App Container -->
+    <div id="app" class="flex-grow flex flex-col">
+      <!-- Header Section -->
+      <header
+        class="py-4 md:py-5 px-6 md:px-8 flex justify-between items-center border-b border-color sticky top-0 z-30 bg-primary/95 backdrop-blur-sm shadow-sm"
+      >
+        <div class="flex items-center">
+          <div class="flex items-center group">
+            <div
+              class="relative mr-3 transition-transform transform group-hover:rotate-12 duration-300"
+            >
+              <i class="dus-quill text-accent text-3xl"></i>
+            </div>
+            <h1 class="text-accent text-2xl font-bold tracking-tight">
+              XoNote
+            </h1>
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center space-x-6">
+          <a
+            href="https://xonotes.github.io/#features"
+            class="text-primary hover:text-accent transition duration-200"
+            >Features</a
+          >
+          <a
+            href="https://xonotes.github.io/#benefits"
+            class="text-primary hover:text-accent transition duration-200"
+            >Why XoNote</a
+          >
+          <a
+            href="https://xonotes.github.io/#contact"
+            class="text-primary hover:text-accent transition duration-200"
+            >Contact</a
+          >
+          <a href="faq.html" class="text-accent transition duration-200">FAQ</a>
+        </nav>
+        <div class="flex items-center space-x-3">
+          <a
+            href="login.html"
+            class="px-4 py-2 rounded-md font-medium border border-accent text-accent hover:bg-accent/10 transition duration-200"
+            >Login</a
+          >
+          <a
+            href="signup.html"
+            class="bg-accent text-black px-4 py-2 rounded-md font-medium hover:bg-accent-hover transition duration-200 shadow-sm"
+            >Sign Up</a
+          >
+        </div>
+        <button
+          class="md:hidden text-primary hover:text-accent"
+          id="mobile-menu-btn"
+        >
+          <i class="bx bx-menu text-2xl"></i>
+        </button>
+      </header>
+
+      <!-- Mobile Menu (Initially Hidden) -->
+      <div
+        id="mobile-menu"
+        class="fixed inset-0 z-40 hidden flex-col bg-primary/95 backdrop-blur-md"
+      >
+        <div class="flex justify-end p-6">
+          <button id="close-mobile-menu" class="text-primary hover:text-accent">
+            <i class="bx bx-x text-3xl"></i>
+          </button>
+        </div>
+        <nav class="flex flex-col items-center space-y-6 text-lg p-6">
+          <a
+            href="https://xonotes.github.io/#features"
+            class="text-primary hover:text-accent transition duration-200 w-full text-center py-2"
+            >Features</a
+          >
+          <a
+            href="https://xonotes.github.io/#benefits"
+            class="text-primary hover:text-accent transition duration-200 w-full text-center py-2"
+            >Why XoNote</a
+          >
+          <a
+            href="https://xonotes.github.io/#contact"
+            class="text-primary hover:text-accent transition duration-200 w-full text-center py-2"
+            >Contact</a
+          >
+          <a
+            href="faq.html"
+            class="text-accent transition duration-200 w-full text-center py-2"
+            >FAQ</a
+          >
+          <div class="border-t border-color w-full my-2"></div>
+          <a
+            href="login.html"
+            class="w-full text-center px-4 py-3 rounded-md font-medium border border-accent text-accent hover:bg-accent/10 transition duration-200 my-1"
+            >Login</a
+          >
+          <a
+            href="signup.html"
+            class="w-full text-center bg-accent text-black px-4 py-3 rounded-md font-medium hover:bg-accent-hover transition duration-200 shadow-sm my-1"
+            >Sign Up</a
+          >
+        </nav>
+      </div>
+
+      <!-- FAQ Hero Section -->
+      <section
+        class="py-16 px-6 md:px-8 bg-gradient-to-b from-primary to-tertiary text-center relative overflow-hidden"
+      >
+        <div
+          class="absolute top-0 right-0 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl"
+        ></div>
+        <div
+          class="absolute bottom-0 left-0 w-72 h-72 bg-accent/10 rounded-full filter blur-3xl"
+        ></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto">
+          <div
+            class="inline-block mb-4 px-4 py-1.5 bg-accent/10 rounded-full text-accent text-sm font-medium"
+          >
+            <span>❓ Questions & Answers</span>
+          </div>
+
+          <h1
+            class="text-4xl md:text-5xl font-bold mb-6 text-primary leading-tight tracking-tight"
+          >
+            Frequently Asked <span class="text-accent">Questions</span>
+          </h1>
+
+          <p
+            class="text-xl text-secondary max-w-3xl mx-auto mb-6 leading-relaxed"
+          >
+            Find answers to common questions about XoNote features, account
+            management, and more.
+          </p>
+
+          <div class="mt-6 flex flex-wrap justify-center gap-3">
+            <button
+              class="faq-filter-btn active px-4 py-2 rounded-lg bg-accent text-black font-medium hover:bg-accent-hover transition-all duration-200"
+              data-category="all"
+            >
+              All Questions
+            </button>
+            <button
+              class="faq-filter-btn px-4 py-2 rounded-lg bg-tertiary text-primary font-medium hover:bg-accent/10 hover:text-accent transition-all duration-200"
+              data-category="general"
+            >
+              General
+            </button>
+            <button
+              class="faq-filter-btn px-4 py-2 rounded-lg bg-tertiary text-primary font-medium hover:bg-accent/10 hover:text-accent transition-all duration-200"
+              data-category="account"
+            >
+              Account
+            </button>
+            <button
+              class="faq-filter-btn px-4 py-2 rounded-lg bg-tertiary text-primary font-medium hover:bg-accent/10 hover:text-accent transition-all duration-200"
+              data-category="features"
+            >
+              Features
+            </button>
+            <button
+              class="faq-filter-btn px-4 py-2 rounded-lg bg-tertiary text-primary font-medium hover:bg-accent/10 hover:text-accent transition-all duration-200"
+              data-category="security"
+            >
+              Security
+            </button>
+            <button
+              class="faq-filter-btn px-4 py-2 rounded-lg bg-tertiary text-primary font-medium hover:bg-accent/10 hover:text-accent transition-all duration-200"
+              data-category="pricing"
+            >
+              Pricing
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Content Section -->
+      <section class="py-12 md:py-16 px-6 md:px-8 bg-primary relative">
+        <div class="max-w-4xl mx-auto">
+          <!-- Search Bar -->
+          <div class="relative mb-12">
+            <div class="relative">
+              <input
+                type="text"
+                id="faq-search"
+                placeholder="Search for questions..."
+                class="w-full py-4 px-5 pl-12 bg-secondary rounded-xl border border-color focus:border-accent focus:ring-1 focus:ring-accent outline-none text-primary transition duration-200"
+              />
+              <i
+                class="bx bx-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-xl"
+              ></i>
+            </div>
+          </div>
+
+          <!-- FAQ Accordions -->
+          <div class="space-y-4 md:space-y-6" id="faq-container">
+            <!-- General Questions -->
+            <div class="faq-item" data-category="general">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  What is XoNote?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  XoNote is a secure digital notebook that helps you organize
+                  your notes, tasks, and passwords in one place. It's designed
+                  to be simple, secure, and synchronized across your devices.
+                  With XoNote, you can create and manage notes, to-do lists, and
+                  securely store passwords with ease.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  How do I get started with XoNote?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>Getting started with XoNote is easy:</p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>
+                    Create a free account by clicking the "Sign Up" button at
+                    the top of this page
+                  </li>
+                  <li>
+                    Verify your email address through the confirmation link
+                    we'll send you
+                  </li>
+                  <li>Log in to access your dashboard</li>
+                  <li>
+                    Start creating notes, to-dos, or saving passwords by
+                    clicking the "+" button
+                  </li>
+                </ol>
+                <p class="mt-2">
+                  The interface is intuitive and easy to navigate. You can
+                  switch between notes, to-dos, and passwords using the tabs at
+                  the top of your dashboard.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="general">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  Is XoNote available on mobile devices?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  Yes! XoNote is designed to work seamlessly across all devices.
+                  Our responsive web application works great on both desktop and
+                  mobile browsers. Additionally, you can install XoNote as a
+                  Progressive Web App (PWA) on your mobile device for an
+                  app-like experience. Just visit XoNote in your mobile browser
+                  and follow the prompts to add it to your home screen.
+                </p>
+              </div>
+            </div>
+
+            <!-- Account Questions -->
+            <div class="faq-item" data-category="account">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  How do I reset my password?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  If you've forgotten your password, you can reset it by
+                  following these steps:
+                </p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>Click on the "Login" button at the top of this page</li>
+                  <li>
+                    Click on the "Forgot Password?" link below the login form
+                  </li>
+                  <li>Enter the email address associated with your account</li>
+                  <li>Check your email for a password reset link</li>
+                  <li>
+                    Click the link and follow the instructions to create a new
+                    password
+                  </li>
+                </ol>
+                <p class="mt-2">
+                  If you don't receive the email within a few minutes, please
+                  check your spam folder or contact our support team for
+                  assistance.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="account">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  Can I delete my account?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>Yes, you can delete your account at any time. To do so:</p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>Log in to your XoNote account</li>
+                  <li>Click on the settings icon in the top right corner</li>
+                  <li>Scroll down to the "Account Management" section</li>
+                  <li>Click on "Delete Account"</li>
+                  <li>Confirm your decision by entering your password</li>
+                </ol>
+                <p class="mt-2 text-red-400">
+                  Please note that account deletion is permanent and will remove
+                  all your data from our servers. Make sure to export or back up
+                  any important information before proceeding.
+                </p>
+              </div>
+            </div>
+
+            <!-- Features Questions -->
+            <div class="faq-item" data-category="features">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  What's the difference between free and premium features?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  XoNote offers both free and premium plans to suit different
+                  needs:
+                </p>
+                <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <h4 class="font-medium mb-2 text-primary">Free Plan:</h4>
+                    <ul class="list-disc pl-5 space-y-1">
+                      <li>Up to 5 notes</li>
+                      <li>Up to 3 todo lists</li>
+                      <li>1 saved password</li>
+                      <li>1,000 character limit per note</li>
+                      <li>Basic formatting options</li>
+                      <li>Ad-supported experience</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 class="font-medium mb-2 text-primary">Premium Plan:</h4>
+                    <ul class="list-disc pl-5 space-y-1">
+                      <li>Unlimited notes</li>
+                      <li>Unlimited todo lists</li>
+                      <li>Unlimited passwords</li>
+                      <li>No character limit for notes</li>
+                      <li>Advanced formatting options</li>
+                      <li>Ad-free experience</li>
+                      <li>Priority customer support</li>
+                      <li>Data export capabilities</li>
+                      <li>Dark and light themes</li>
+                    </ul>
+                  </div>
+                </div>
+                <p class="mt-3">
+                  You can upgrade to the premium plan at any time from your
+                  account settings.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="features">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  Can I export my data from XoNote?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  Yes, premium users can export their data from XoNote. To
+                  export:
+                </p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>
+                    Go to your account settings by clicking the gear icon in the
+                    top right
+                  </li>
+                  <li>Navigate to the "Data Management" section</li>
+                  <li>Click on "Export Data"</li>
+                  <li>
+                    Choose what you want to export (notes, todos, passwords, or
+                    all)
+                  </li>
+                  <li>Select your preferred format (JSON, CSV, or PDF)</li>
+                  <li>Click "Export" to download your data</li>
+                </ol>
+                <p class="mt-2">
+                  Please note that data export is a premium feature. Free users
+                  can upgrade to access this functionality.
+                </p>
+              </div>
+            </div>
+
+            <!-- Security Questions -->
+            <div class="faq-item" data-category="security">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  How secure is my data in XoNote?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  Security is our top priority at XoNote. We employ several
+                  measures to keep your data safe:
+                </p>
+                <ul class="list-disc pl-5 mt-2 space-y-2">
+                  <li>
+                    <strong>End-to-end encryption:</strong> Your data is
+                    encrypted before it leaves your device and can only be
+                    decrypted by you.
+                  </li>
+                  <li>
+                    <strong>Secure authentication:</strong> We use
+                    industry-standard authentication practices and offer
+                    two-factor authentication for added security.
+                  </li>
+                  <li>
+                    <strong>Data isolation:</strong> Your data is stored in
+                    isolated environments to prevent unauthorized access.
+                  </li>
+                  <li>
+                    <strong>Regular security audits:</strong> We conduct regular
+                    security assessments and penetration testing to identify and
+                    address vulnerabilities.
+                  </li>
+                  <li>
+                    <strong>Secure infrastructure:</strong> Our systems are
+                    hosted on secure cloud infrastructure with multiple layers
+                    of security controls.
+                  </li>
+                </ul>
+                <p class="mt-2">
+                  We never store your master password in plaintext, and it's
+                  never sent to our servers. This ensures that even in the
+                  unlikely event of a data breach, your sensitive information
+                  remains protected.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="security">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  How does the password manager work?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  XoNote's password manager allows you to securely store and
+                  manage your passwords. Here's how it works:
+                </p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>
+                    Your passwords are encrypted using AES-256 encryption, a
+                    military-grade encryption standard.
+                  </li>
+                  <li>
+                    The encryption is performed locally on your device before
+                    being stored in our database.
+                  </li>
+                  <li>
+                    To add a new password, simply click the "+" button while in
+                    the Password tab and fill in the details.
+                  </li>
+                  <li>
+                    You can view your stored passwords by clicking on them in
+                    your password list.
+                  </li>
+                  <li>
+                    For security, you'll need to re-enter your master password
+                    to view or edit sensitive password information.
+                  </li>
+                  <li>
+                    The password manager also includes a secure password
+                    generator to help you create strong, unique passwords.
+                  </li>
+                </ol>
+                <p class="mt-2">
+                  With XoNote's password manager, you no longer need to remember
+                  multiple complex passwords or resort to insecure practices
+                  like using the same password for multiple sites.
+                </p>
+              </div>
+            </div>
+
+            <!-- Pricing Questions -->
+            <div class="faq-item" data-category="pricing">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  How much does XoNote Premium cost?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>XoNote Premium is available at the following rates:</p>
+                <ul class="list-disc pl-5 mt-2 space-y-2">
+                  <li><strong>Monthly plan:</strong> ₹49 per month</li>
+                  <li>
+                    <strong>Annual plan:</strong> ₹567 per year (saving you ₹
+                    compared to monthly billing)
+                  </li>
+                  <li>
+                    <strong>Lifetime plan:</strong> ₹2999 one-time payment
+                  </li>
+                </ul>
+                <p class="mt-2">
+                  All plans include all premium features, and we occasionally
+                  offer special promotions or discounts. Stay tuned to our
+                  newsletter for announcements about these offers.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="pricing">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  Can I cancel my premium subscription?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  Yes, you can cancel your premium subscription at any time.
+                  Here's how:
+                </p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>Log in to your XoNote account</li>
+                  <li>
+                    Go to Settings by clicking the gear icon in the top right
+                  </li>
+                  <li>Navigate to the "Subscription" section</li>
+                  <li>Click on "Manage Subscription"</li>
+                  <li>Select "Cancel Subscription"</li>
+                  <li>Confirm your cancellation</li>
+                </ol>
+                <p class="mt-2">
+                  When you cancel, you'll continue to have access to premium
+                  features until the end of your current billing period. After
+                  that, your account will revert to the free tier. We don't
+                  offer prorated refunds for partial months or years of service.
+                </p>
+                <p class="mt-2">
+                  If you purchased a lifetime subscription, it does not require
+                  renewal and cannot be refunded after the 30-day satisfaction
+                  guarantee period.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item" data-category="pricing">
+              <div
+                class="faq-question bg-secondary p-5 rounded-xl flex justify-between items-center cursor-pointer group hover:bg-tertiary transition duration-200"
+              >
+                <h3 class="font-medium text-lg text-primary">
+                  Do you offer refunds?
+                </h3>
+                <i
+                  class="bx bx-plus text-2xl text-accent group-hover:rotate-45 transition-transform duration-300"
+                ></i>
+              </div>
+              <div
+                class="faq-answer hidden mt-2 px-5 py-4 bg-tertiary/50 rounded-xl text-secondary"
+              >
+                <p>
+                  Yes, we offer a 30-day satisfaction guarantee for all new
+                  premium subscriptions. If you're not satisfied with our
+                  service within the first 30 days of your subscription, you can
+                  request a full refund by contacting our support team.
+                </p>
+                <p class="mt-2">To request a refund:</p>
+                <ol class="list-decimal pl-5 mt-2 space-y-2">
+                  <li>Contact support at support@xonote.com</li>
+                  <li>
+                    Include your account email and the reason for your refund
+                    request
+                  </li>
+                  <li>
+                    Our team will process your request within 3-5 business days
+                  </li>
+                </ol>
+                <p class="mt-2">
+                  Please note that refunds are only available within the first
+                  30 days of your initial purchase. Subsequent renewal payments
+                  are not eligible for refunds.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- No Results Message (Hidden by default) -->
+          <div id="no-results" class="hidden text-center py-10">
+            <i class="bx bx-search-alt text-gray-600 text-6xl mb-4"></i>
+            <h3 class="text-xl font-semibold mb-2">
+              No matching questions found
+            </h3>
+            <p class="text-gray-400 mb-6">
+              Try a different search term or browse all questions
+            </p>
+            <button
+              id="reset-search"
+              class="px-4 py-2 bg-accent text-black rounded-lg hover:bg-accent-hover transition duration-200"
+            >
+              View All Questions
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact CTA Section -->
+      <section class="py-16 px-6 md:px-8 bg-tertiary relative">
+        <div
+          class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-primary to-transparent"
+        ></div>
+
+        <div class="max-w-4xl mx-auto text-center">
+          <h2 class="text-3xl font-bold mb-6 text-primary">
+            Still have questions?
+          </h2>
+          <p class="text-xl text-secondary mb-8">
+            Our support team is here to help you with any questions or issues
+            you might have.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a
+              href="https://xonotes.github.io/#contact"
+              class="bg-accent hover:bg-accent-hover text-black px-6 py-3 rounded-lg font-medium transition duration-200 flex items-center justify-center"
+            >
+              <i class="bx bx-envelope mr-2"></i> Contact Support
+            </a>
+            <a
+              href="mailto:support@xonote.com"
+              class="border border-accent/50 text-accent hover:bg-accent/10 px-6 py-3 rounded-lg font-medium transition duration-200 flex items-center justify-center"
+            >
+              <i class="bx bx-mail-send mr-2"></i> Email Us Directly
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Section -->
+      <footer
+        class="pt-20 pb-10 px-6 md:px-8 bg-primary border-t border-color relative"
+      >
+        <div
+          class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-tertiary to-transparent"
+        ></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+            <!-- Brand Section -->
+            <div class="md:col-span-1">
+              <div class="flex items-center mb-6 group">
+                <div
+                  class="relative mr-3 transition-transform transform group-hover:rotate-12 duration-300"
+                >
+                  <i class="dus-quill text-accent text-3xl"></i>
+                </div>
+                <h2 class="text-accent text-2xl font-bold tracking-tight">
+                  XoNote
+                </h2>
+              </div>
+              <p class="text-secondary text-sm mb-6">
+                Your secure digital notebook for notes, todos, and passwords.
+                Simple, secure, and synchronized across all your devices.
+              </p>
+              <div class="flex space-x-3 mb-6">
+                <a
+                  href="#"
+                  class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200"
+                >
+                  <i class="bx bxl-twitter text-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200"
+                >
+                  <i class="bx bxl-facebook text-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200"
+                >
+                  <i class="bx bxl-instagram text-lg"></i>
+                </a>
+                <a
+                  href="#"
+                  class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200"
+                >
+                  <i class="bx bxl-github text-lg"></i>
+                </a>
+              </div>
+
+              <div
+                class="flex items-center space-x-2 text-sm text-secondary mb-6"
+              >
+                <a
+                  href="https://xonotes.github.io/"
+                  class="inline-flex bg-secondary/30 px-3 py-1 rounded-full hover:text-accent transition duration-200"
+                >
+                  <span class="flex items-center"
+                    ><i class="bx bx-chevron-left text-lg mr-1"></i> Home</span
+                  >
+                </a>
+                <a
+                  href="#"
+                  class="inline-flex bg-secondary/30 px-3 py-1 rounded-full hover:text-accent transition duration-200"
+                >
+                  <span class="flex items-center"
+                    ><i class="bx bx-chevron-up text-lg mr-1"></i> Top</span
+                  >
+                </a>
+              </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="md:col-span-1">
+              <h3 class="text-lg font-semibold mb-6 text-primary">Product</h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="https://xonotes.github.io/#features"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Features
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="faq.html"
+                    class="text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    FAQ
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Pricing
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Security
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Updates
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Company Links -->
+            <div class="md:col-span-1">
+              <h3 class="text-lg font-semibold mb-6 text-primary">Company</h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="about.html"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="blog.html"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Careers
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://xonotes.github.io/#contact"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Contact
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Partners
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Legal Links -->
+            <div class="md:col-span-1">
+              <h3 class="text-lg font-semibold mb-6 text-primary">Legal</h3>
+              <ul class="space-y-3">
+                <li>
+                  <a
+                    href="privacy.html"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Privacy Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="terms.html"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Terms of Service
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="cookie-policy.html"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Cookie Policy
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    GDPR Compliance
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    class="text-secondary hover:text-accent transition duration-200 flex items-center"
+                  >
+                    <i
+                      class="bx bx-chevron-right text-accent/50 mr-2 text-sm"
+                    ></i>
+                    Data Security
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bottom Section -->
+          <div
+            class="pt-8 border-t border-color flex flex-col md:flex-row justify-between items-center"
+          >
+            <div class="flex flex-col sm:flex-row items-center mb-6 md:mb-0">
+              <p class="text-secondary text-sm mb-3 sm:mb-0 sm:mr-6">
+                © 2025 XoNote. All rights reserved.
+              </p>
+              <div class="flex space-x-4 text-sm">
+                <a
+                  href="privacy.html"
+                  class="text-secondary hover:text-accent transition"
+                  >Privacy</a
+                >
+                <a
+                  href="terms.html"
+                  class="text-secondary hover:text-accent transition"
+                  >Terms</a
+                >
+                <a
+                  href="cookie-policy.html"
+                  class="text-secondary hover:text-accent transition"
+                  >Cookies</a
+                >
+              </div>
+            </div>
+
+            <div class="flex items-center">
+              <div class="flex items-center mr-4">
+                <span class="mr-2 text-sm text-secondary">Dark Mode</span>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    class="sr-only peer"
+                    id="theme-toggle"
+                  />
+                  <div
+                    class="w-11 h-6 bg-secondary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-accent after:border-secondary after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent/20"
+                  ></div>
+                </label>
+              </div>
+              <div class="text-sm text-secondary">
+                <a href="#" class="hover:text-accent transition">
+                  <i class="bx bx-world mr-1"></i> English
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+        const closeMobileMenuBtn = document.getElementById("close-mobile-menu");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (mobileMenuBtn && mobileMenu && closeMobileMenuBtn) {
+          mobileMenuBtn.addEventListener("click", function () {
+            mobileMenu.classList.remove("hidden");
+            mobileMenu.classList.add("flex");
+            document.body.classList.add("overflow-hidden");
+          });
+
+          closeMobileMenuBtn.addEventListener("click", function () {
+            mobileMenu.classList.add("hidden");
+            mobileMenu.classList.remove("flex");
+            document.body.classList.remove("overflow-hidden");
+          });
+
+          // Close mobile menu when clicking on a link
+          const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+          mobileMenuLinks.forEach((link) => {
+            link.addEventListener("click", function () {
+              mobileMenu.classList.add("hidden");
+              mobileMenu.classList.remove("flex");
+              document.body.classList.remove("overflow-hidden");
+            });
+          });
+        }
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById("theme-toggle");
+        const htmlElement = document.documentElement;
+
+        if (themeToggle) {
+          // Check for saved theme preference or use user's system preference
+          const savedTheme = localStorage.getItem("xonote-theme");
+          const systemPrefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+          // Set initial theme
+          if (savedTheme === "light") {
+            htmlElement.classList.remove("dark-theme");
+            htmlElement.classList.add("light-theme");
+            themeToggle.checked = true;
+          } else if (savedTheme === "dark" || systemPrefersDark) {
+            htmlElement.classList.add("dark-theme");
+            htmlElement.classList.remove("light-theme");
+            themeToggle.checked = false;
+          }
+
+          // Toggle theme when checkbox is clicked
+          themeToggle.addEventListener("change", function () {
+            if (this.checked) {
+              htmlElement.classList.remove("dark-theme");
+              htmlElement.classList.add("light-theme");
+              localStorage.setItem("xonote-theme", "light");
+            } else {
+              htmlElement.classList.add("dark-theme");
+              htmlElement.classList.remove("light-theme");
+              localStorage.setItem("xonote-theme", "dark");
+            }
+          });
+        }
+
+        // FAQ Accordion functionality
+        const faqQuestions = document.querySelectorAll(".faq-question");
+
+        faqQuestions.forEach((question) => {
+          question.addEventListener("click", function () {
+            const answer = this.nextElementSibling;
+            const icon = this.querySelector("i");
+
+            // Toggle answer visibility
+            answer.classList.toggle("hidden");
+
+            // Toggle icon rotation
+            if (answer.classList.contains("hidden")) {
+              icon.style.transform = "rotate(0deg)";
+            } else {
+              icon.style.transform = "rotate(45deg)";
+            }
+          });
+        });
+
+        // FAQ Filter functionality
+        const filterButtons = document.querySelectorAll(".faq-filter-btn");
+        const faqItems = document.querySelectorAll(".faq-item");
+        const noResults = document.getElementById("no-results");
+
+        filterButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            // Update active button
+            filterButtons.forEach((btn) =>
+              btn.classList.remove("active", "bg-accent", "text-black")
+            );
+            filterButtons.forEach((btn) =>
+              btn.classList.add("bg-tertiary", "text-primary")
+            );
+            this.classList.add("active", "bg-accent", "text-black");
+            this.classList.remove("bg-tertiary", "text-primary");
+
+            const category = this.getAttribute("data-category");
+
+            // Filter FAQ items
+            let visibleCount = 0;
+
+            faqItems.forEach((item) => {
+              const itemCategory = item.getAttribute("data-category");
+
+              if (category === "all" || category === itemCategory) {
+                item.classList.remove("hidden");
+                visibleCount++;
+              } else {
+                item.classList.add("hidden");
+              }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+              noResults.classList.remove("hidden");
+            } else {
+              noResults.classList.add("hidden");
+            }
+          });
+        });
+
+        // FAQ Search functionality
+        const searchInput = document.getElementById("faq-search");
+        const resetSearchBtn = document.getElementById("reset-search");
+
+        searchInput.addEventListener("input", function () {
+          const searchTerm = this.value.toLowerCase().trim();
+          let matchCount = 0;
+
+          if (searchTerm === "") {
+            // Reset to show all if search is empty
+            faqItems.forEach((item) => {
+              item.classList.remove("hidden");
+            });
+            noResults.classList.add("hidden");
+            return;
+          }
+
+          faqItems.forEach((item) => {
+            const question = item
+              .querySelector(".faq-question h3")
+              .textContent.toLowerCase();
+            const answer = item
+              .querySelector(".faq-answer")
+              .textContent.toLowerCase();
+
+            if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+              item.classList.remove("hidden");
+              matchCount++;
+            } else {
+              item.classList.add("hidden");
+            }
+          });
+
+          // Show/hide no results message
+          if (matchCount === 0) {
+            noResults.classList.remove("hidden");
+          } else {
+            noResults.classList.add("hidden");
+          }
+
+          // Reset active filter button
+          filterButtons.forEach((btn) =>
+            btn.classList.remove("active", "bg-accent", "text-black")
+          );
+          filterButtons.forEach((btn) =>
+            btn.classList.add("bg-tertiary", "text-primary")
+          );
+          document
+            .querySelector('[data-category="all"]')
+            .classList.add("active", "bg-accent", "text-black");
+          document
+            .querySelector('[data-category="all"]')
+            .classList.remove("bg-tertiary", "text-primary");
+        });
+
+        resetSearchBtn.addEventListener("click", function () {
+          // Clear search input and show all questions
+          searchInput.value = "";
+
+          faqItems.forEach((item) => {
+            item.classList.remove("hidden");
+          });
+
+          noResults.classList.add("hidden");
+
+          // Reset filter buttons
+          filterButtons.forEach((btn) =>
+            btn.classList.remove("active", "bg-accent", "text-black")
+          );
+          filterButtons.forEach((btn) =>
+            btn.classList.add("bg-tertiary", "text-primary")
+          );
+          document
+            .querySelector('[data-category="all"]')
+            .classList.add("active", "bg-accent", "text-black");
+          document
+            .querySelector('[data-category="all"]')
+            .classList.remove("bg-tertiary", "text-primary");
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            const targetId = this.getAttribute("href");
+            if (targetId !== "#") {
+              e.preventDefault();
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                window.scrollTo({
+                  top: targetElement.offsetTop - 100,
+                  behavior: "smooth",
+                });
+              }
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

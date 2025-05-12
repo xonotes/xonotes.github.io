@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0">
+    <title>Sign Up - XoNote</title>
+    <meta name="description" content="Create a new account for XoNote - Notes, Todo & Password Manager">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dusfire/icon/css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="site.webmanifest">
+    <style>
+        .form-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .floating-label {
+            position: absolute;
+            pointer-events: none;
+            left: 1rem;
+            top: 0.8rem;
+            transition: 0.2s ease all;
+            color: var(--text-secondary);
+        }
+        
+        .form-input:focus ~ .floating-label,
+        .form-input:not(:placeholder-shown) ~ .floating-label {
+            top: -0.75rem;
+            left: 0.75rem;
+            font-size: 0.75rem;
+            padding: 0 0.25rem;
+            background-color: var(--bg-primary);
+            color: var(--accent-color);
+        }
+        
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .strength-weak { width: 30%; background-color: #ef4444; }
+        .strength-medium { width: 60%; background-color: #eab308; }
+        .strength-strong { width: 100%; background-color: #10b981; }
+        
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-primary text-primary min-h-screen flex flex-col">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 flex items-center justify-center z-50 bg-primary">
+        <div class="text-center p-8 rounded-xl">
+            <div class="relative">
+                <i class="dus-quill text-accent text-6xl animate-pulse"></i>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <div class="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold mt-6 text-accent tracking-wide">XoNote</h2>
+            <p class="mt-3 text-secondary">Create your account</p>
+            <div class="mt-6 w-48 h-1.5 bg-gray-700 rounded-full mx-auto overflow-hidden">
+                <div id="loading-progress" class="h-full bg-accent rounded-full" style="width: 0%"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app" class="hidden flex-grow flex flex-col">
+        <!-- Header -->
+        <header class="bg-secondary py-4 px-6 flex justify-between items-center border-b border-color">
+            <div class="flex items-center">
+                <a href="index.html" class="flex items-center group">
+                    <div class="relative mr-3 transition-transform transform group-hover:rotate-12">
+                        <i class="dus-quill text-accent text-3xl"></i>
+                    </div>
+                    <h1 class="text-accent text-2xl font-bold">XoNote</h1>
+                </a>
+            </div>
+        </header>
+
+        <!-- Signup Form -->
+        <div class="flex-grow flex items-center justify-center p-6">
+            <div class="bg-secondary p-8 rounded-lg shadow-lg max-w-md w-full border border-color">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold">Create Your Account</h2>
+                    <p class="text-secondary mt-2">Start organizing your notes, todos, and passwords</p>
+                </div>
+
+                <form id="signup-form" class="space-y-6">
+                    <div id="signup-error" class="hidden bg-red-900/50 text-red-300 p-4 rounded-md text-sm border border-red-800/50 flex items-start">
+                        <i class="bx bx-error-circle text-red-400 text-xl mr-2 flex-shrink-0 mt-0.5"></i>
+                        <span id="error-message"></span>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" id="name" class="form-input w-full px-4 py-3 pt-5 bg-tertiary border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent placeholder-transparent" required placeholder="Full Name">
+                        <label for="name" class="floating-label">Full Name</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="email" id="email" class="form-input w-full px-4 py-3 pt-5 bg-tertiary border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent placeholder-transparent" required placeholder="Email">
+                        <label for="email" class="floating-label">Email Address</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="relative">
+                            <input type="password" id="password" class="form-input w-full px-4 py-3 pt-5 bg-tertiary border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent placeholder-transparent pr-10" required placeholder="Password">
+                            <button type="button" id="toggle-password" class="absolute inset-y-0 right-0 px-3 flex items-center text-secondary hover:text-primary">
+                                <i class="bx bx-hide"></i>
+                            </button>
+                            <label for="password" class="floating-label">Password</label>
+                        </div>
+                        <div class="password-strength bg-gray-700 mt-2"></div>
+                        <p class="text-secondary text-xs mt-1 flex items-center">
+                            <i class="bx bx-info-circle mr-1"></i>
+                            <span id="password-feedback">Password must be at least 6 characters</span>
+                        </p>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="relative">
+                            <input type="password" id="confirm-password" class="form-input w-full px-4 py-3 pt-5 bg-tertiary border border-color rounded-md focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent placeholder-transparent" required placeholder="Confirm Password">
+                            <label for="confirm-password" class="floating-label">Confirm Password</label>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input type="checkbox" id="terms" class="h-5 w-5 accent-accent rounded mt-1 mr-3 cursor-pointer">
+                        <label for="terms" class="text-sm text-secondary cursor-pointer">
+                            I agree to the <a href="terms.html" class="text-accent hover:underline">Terms of Service</a>, <a href="privacy.html" class="text-accent hover:underline">Privacy Policy</a> and <a href="cookie-policy.html" class="text-accent hover:underline">Cookie Policy</a>
+                        </label>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full bg-accent text-black py-3 rounded-md font-medium hover:bg-accent-hover transition flex items-center justify-center">
+                            <span id="signup-btn-text">Create Account</span>
+                            <span id="signup-btn-loading" class="hidden flex items-center">
+                                <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                                Creating account...
+                            </span>
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-color"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-secondary text-secondary">Or sign up with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6">
+                        <button id="google-signup-btn" class="w-full flex items-center justify-center py-3 px-4 border border-color rounded-md hover:bg-tertiary transition">
+                            <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" class="w-5 h-5 mr-2">
+                            <span>Google</span>
+                        </button>
+                    </div>
+                </div>
+
+                <p class="mt-8 text-center text-secondary">
+                    Already have an account? 
+                    <a href="login.html" class="text-accent hover:underline">Log in</a>
+                </p>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="py-4 px-6 bg-secondary border-t border-color text-center text-sm text-secondary">
+            <p>© 2025 XoNote. All rights reserved. <a href="privacy.html" class="text-accent hover:underline">Privacy Policy</a> | <a href="terms.html" class="text-accent hover:underline">Terms of Service</a> | <a href="cookie-policy.html" class="text-accent hover:underline">Cookie Policy</a></p>
+        </footer>
+    </div>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, updateProfile } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDb30Y9CHkT-hU-QrigzFib8y34wwTXT_E",
+          authDomain: "xo-note.firebaseapp.com",
+          projectId: "xo-note",
+          storageBucket: "xo-note.firebasestorage.app",
+          messagingSenderId: "828768568824",
+          appId: "1:828768568824:web:55042138b350065239020d",
+          measurementId: "G-GC0SWH8MJ1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const googleProvider = new GoogleAuthProvider();
+        
+        // DOM Elements
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingProgress = document.getElementById('loading-progress');
+        const appContainer = document.getElementById('app');
+        
+        // Animate loading progress bar
+        function animateLoading() {
+            if (!loadingProgress) return;
+            
+            let width = 0;
+            const interval = setInterval(() => {
+                width += 1;
+                loadingProgress.style.width = `${Math.min(width, 90)}%`;
+                
+                if (width >= 90) {
+                    clearInterval(interval);
+                }
+            }, 20);
+        }
+        
+        // Start loading animation
+        animateLoading();
+
+        // Check if user is already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user is already logged in
+            auth.onAuthStateChanged(user => {
+                if (user) {
+                    // User is logged in, redirect to home page
+                    window.location.href = 'index.html';
+                } else {
+                    // Hide loading screen with animation
+                    setTimeout(() => {
+                        if (loadingProgress) loadingProgress.style.width = '100%';
+                        setTimeout(() => {
+                            loadingScreen.classList.add('fade-out');
+                            setTimeout(() => {
+                                loadingScreen.classList.add('hidden');
+                                appContainer.classList.remove('hidden');
+                                appContainer.classList.add('fade-in');
+                            }, 300);
+                        }, 400);
+                    }, 1000);
+                }
+            });
+        });
+        
+        // Toggle password visibility
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            const icon = togglePassword.querySelector('i');
+            icon.classList.toggle('bx-hide');
+            icon.classList.toggle('bx-show');
+        });
+        
+        // Password strength meter
+        const passwordStrength = document.querySelector('.password-strength');
+        const passwordFeedback = document.getElementById('password-feedback');
+        
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            updatePasswordStrength(password);
+        });
+        
+        function updatePasswordStrength(password) {
+            // Remove all classes
+            passwordStrength.classList.remove('strength-weak', 'strength-medium', 'strength-strong');
+            
+            // Check password strength
+            if (password.length === 0) {
+                passwordStrength.style.width = '0';
+                passwordFeedback.textContent = 'Password must be at least 6 characters';
+                return;
+            }
+            
+            // Basic strength check
+            let strength = 0;
+            
+            // Length check
+            if (password.length >= 6) strength += 1;
+            if (password.length >= 10) strength += 1;
+            
+            // Complexity checks
+            if (/[A-Z]/.test(password)) strength += 1;
+            if (/[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+            
+            // Set strength indicator
+            if (strength <= 2) {
+                passwordStrength.classList.add('strength-weak');
+                passwordFeedback.textContent = 'Weak password';
+            } else if (strength <= 4) {
+                passwordStrength.classList.add('strength-medium');
+                passwordFeedback.textContent = 'Medium strength password';
+            } else {
+                passwordStrength.classList.add('strength-strong');
+                passwordFeedback.textContent = 'Strong password';
+            }
+        }
+
+        // Sign Up with Email and Password
+        const signupForm = document.getElementById('signup-form');
+        const signupError = document.getElementById('signup-error');
+        const errorMessage = document.getElementById('error-message');
+        const signupBtnText = document.getElementById('signup-btn-text');
+        const signupBtnLoading = document.getElementById('signup-btn-loading');
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Validate form
+            if (!name) {
+                showErrorWithShake('Please enter your name');
+                return;
+            }
+            
+            if (!email) {
+                showErrorWithShake('Please enter your email address');
+                return;
+            }
+            
+            if (!password) {
+                showErrorWithShake('Please enter a password');
+                return;
+            }
+            
+            if (!terms) {
+                showErrorWithShake('You must agree to the Terms of Service and Privacy Policy');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showErrorWithShake('Passwords do not match');
+                return;
+            }
+            
+            if (password.length < 6) {
+                showErrorWithShake('Password must be at least 6 characters long');
+                return;
+            }
+            
+            // Show loading state
+            signupBtnText.classList.add('hidden');
+            signupBtnLoading.classList.remove('hidden');
+            signupError.classList.add('hidden');
+            
+            try {
+                // Create user
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                
+                // Update profile with name
+                await updateProfile(userCredential.user, {
+                    displayName: name
+                });
+                
+                // Show 100% progress as success indicator
+                if (loadingProgress) loadingProgress.style.width = '100%';
+                
+                // Redirect will happen automatically due to the auth state change listener
+            } catch (error) {
+                showErrorWithShake(getErrorMessage(error.code));
+                
+                // Reset button state
+                signupBtnText.classList.remove('hidden');
+                signupBtnLoading.classList.add('hidden');
+            }
+        });
+        
+        function showErrorWithShake(message) {
+            errorMessage.textContent = message;
+            signupError.classList.remove('hidden');
+            signupForm.classList.add('shake');
+            
+            // Remove shake class after animation completes
+            setTimeout(() => {
+                signupForm.classList.remove('shake');
+            }, 500);
+        }
+
+        // Sign Up with Google
+        const googleSignupBtn = document.getElementById('google-signup-btn');
+        
+        googleSignupBtn.addEventListener('click', async () => {
+            try {
+                await signInWithPopup(auth, googleProvider);
+                // Redirect will happen automatically due to the auth state change listener
+            } catch (error) {
+                showErrorWithShake(getErrorMessage(error.code));
+            }
+        });
+
+        // Helper for error messages
+        function getErrorMessage(errorCode) {
+            switch (errorCode) {
+                case 'auth/email-already-in-use':
+                    return 'This email is already in use. Try logging in instead.';
+                case 'auth/invalid-email':
+                    return 'Invalid email address format.';
+                case 'auth/operation-not-allowed':
+                    return 'Email/password accounts are not enabled.';
+                case 'auth/weak-password':
+                    return 'Password is too weak. Please use a stronger password.';
+                case 'auth/popup-closed-by-user':
+                    return 'Sign-up popup was closed before completing the sign up.';
+                case 'auth/network-request-failed':
+                    return 'Network error. Please check your internet connection.';
+                default:
+                    return 'An error occurred during sign up. Please try again.';
+            }
+        }
+    </script>
+
+    <!-- App Script -->
+    <script type="module" src="js/signup.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      // Register the service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

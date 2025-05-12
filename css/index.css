@@ -1,0 +1,1165 @@
+/* Custom styles beyond Tailwind CSS */
+
+/* CSS Variables for Theming */
+:root {
+    /* Default Dark Theme Variables - Professional with 3 main colors */
+    --bg-primary: #121212;    /* Main background color - almost black */
+    --bg-secondary: #1A1A1A;  /* Slightly lighter background for cards/elements */
+    --bg-tertiary: #242424;   /* Tertiary background for accents and hover states */
+    --text-primary: #FFFFFF;  /* Primary text color - white */
+    --text-secondary: #B0B0B0; /* Secondary text color - light gray */
+    --border-color: #323232;  /* Border color - dark gray */
+    --accent-color: #FACC15;  /* Keeping the yellow accent color */
+    --accent-hover: #EAB308;  /* Slightly darker yellow for hover states */
+    --scrollbar-track: #1A1A1A;
+    --scrollbar-thumb: #323232;
+    --scrollbar-thumb-hover: #424242;
+    --card-bg: #1A1A1A;
+    --card-hover: #242424;
+    --card-shadow: rgba(0, 0, 0, 0.3);
+    --modal-bg: rgba(0, 0, 0, 0.8);
+    --modal-content-bg: #1A1A1A;
+    --input-bg: #242424;
+    --input-border: #323232;
+    --toast-bg: #1A1A1A;
+    --toast-shadow: rgba(0, 0, 0, 0.3);
+    --gray-400: #B0B0B0;
+    --gray-500: #8A8A8A;
+    --gray-600: #6A6A6A;
+    --gray-700: #242424;
+    --gray-800: #1A1A1A;
+    --gray-900: #121212;
+    --red-400: #F87171;
+    --red-500: #EF4444;
+    --red-600: #DC2626;
+    --blue-400: #60A5FA;
+    --blue-500: #3B82F6;
+}
+
+/* Light Theme Variables - Professional with 3 main colors */
+.light-theme {
+    --bg-primary: #FFFFFF;    /* Main background color - white */
+    --bg-secondary: #F5F5F5;  /* Slightly darker background for cards/elements */
+    --bg-tertiary: #EFEFEF;   /* Tertiary background for accents and hover states */
+    --text-primary: #2D2D2D;  /* Primary text color - dark gray for better readability */
+    --text-secondary: #6A6A6A; /* Secondary text color - medium gray */
+    --border-color: #E5E5E5;  /* Border color - light gray */
+    --accent-color: #FACC15;  /* Keeping the yellow accent color */
+    --accent-hover: #EAB308;  /* Slightly darker yellow for hover states */
+    --scrollbar-track: #F5F5F5;
+    --scrollbar-thumb: #E5E5E5;
+    --scrollbar-thumb-hover: #CDCDCD;
+    --card-bg: #FFFFFF;
+    --card-hover: #F9F9F9;
+    --card-shadow: rgba(0, 0, 0, 0.05);
+    --modal-bg: rgba(0, 0, 0, 0.6);
+    --modal-content-bg: #FFFFFF;
+    --input-bg: #F5F5F5;
+    --input-border: #E5E5E5;
+    --toast-bg: #FFFFFF;
+    --toast-shadow: rgba(0, 0, 0, 0.1);
+    --gray-400: #A0A0A0;
+    --gray-500: #6A6A6A;
+    --gray-600: #4A4A4A;
+    --gray-700: #EFEFEF;
+    --gray-800: #F5F5F5;
+    --gray-900: #FFFFFF;
+    --red-400: #F87171;
+    --red-500: #EF4444;
+    --red-600: #DC2626;
+    --blue-400: #60A5FA;
+    --blue-500: #3B82F6;
+}
+
+/* Smooth transitions for theme switching */
+.theme-transition,
+body, button, input, textarea, select,
+.modal, .modal-content, .toast,
+.note-card, .todo-item, .password-card {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(20px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Base animations */
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.fade-out {
+    animation: fadeOut 0.3s ease-in-out;
+}
+
+.slide-up {
+    animation: slideUp 0.4s ease-out;
+}
+
+.slide-in-right {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.pulse {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Loading animation */
+#loading-screen {
+    animation: fadeIn 0.3s ease-in-out;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: opacity 0.3s ease-in-out;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+}
+
+#loading-progress {
+    transition: width 0.4s ease-in-out;
+}
+
+#loading-screen.hidden {
+    display: none;
+}
+
+#app.hidden {
+    display: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover);
+}
+
+/* Note card styles */
+.note-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.note-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.note-card h3, .todo-item h3, .password-card h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Todo item styles */
+.todo-item {
+    transition: background-color 0.2s ease;
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.todo-item.completed {
+    text-decoration: line-through;
+    opacity: 0.7;
+}
+
+/* Password item styles */
+.password-card {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.password-field {
+    font-family: monospace;
+    letter-spacing: 0.1em;
+    color: var(--text-secondary);
+}
+
+/* Custom focus styles */
+button:focus, 
+input:focus, 
+textarea:focus,
+select:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* Remove active border */
+button:active, 
+.tab-btn:active,
+a:active {
+    outline: none;
+    border-color: transparent;
+}
+
+/* Modal animations */
+.modal {
+    animation: fadeIn 0.2s ease-out;
+    background-color: var(--modal-bg);
+}
+
+.modal-content {
+    animation: slideUp 0.3s ease-out;
+    background-color: var(--modal-content-bg);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Modal content title */
+.modal-content h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 90%;
+}
+
+/* Fix for password viewer modal with long website names */
+.modal-content .flex.justify-between.items-center {
+    flex-wrap: nowrap;
+}
+
+.modal-content .flex.items-center {
+    min-width: 0; /* Important for text truncation to work */
+}
+
+.modal-content .flex.items-center h3 {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 200px; /* Adjust this value based on modal width */
+}
+
+.modal-content .flex.space-x-3 {
+    flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+/* Ensure space for action buttons */
+@media (max-width: 640px) {
+    .modal-content .flex.items-center h3 {
+        max-width: 150px; /* Even smaller on mobile */
+    }
+}
+
+/* Toast notification style */
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background: var(--toast-bg);
+    color: var(--text-primary);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--toast-shadow);
+    z-index: 1000;
+    animation: slideInRight 0.3s ease-out;
+}
+
+.toast.success {
+    border-left: 4px solid #22c55e;
+}
+
+.toast.error {
+    border-left: 4px solid #ef4444;
+}
+
+.toast.info {
+    border-left: 4px solid #3b82f6;
+}
+
+/* Responsive tab styles */
+@media (max-width: 640px) {
+    .tab-btn {
+        font-size: 0.9rem;
+        padding: 10px 5px;
+    }
+}
+
+/* Body lock for modals */
+body.overflow-hidden {
+    overflow: hidden;
+    touch-action: none;
+}
+
+/* Floating button animation */
+#add-btn {
+    transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--accent-color);
+    box-shadow: 0 4px 16px rgba(250, 204, 21, 0.4);
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+}
+
+#add-btn:hover {
+    transform: scale(1.05);
+    background-color: var(--accent-hover);
+    box-shadow: 0 6px 20px rgba(250, 204, 21, 0.5);
+}
+
+#add-btn:active {
+    transform: scale(0.95);
+}
+
+/* Icon size adjustments */
+.bx {
+    font-size: 1.1em;
+}
+
+.bx-plus, .bx-search, .bx-cog {
+    font-size: 1.75rem;
+}
+
+/* Masked password field */
+.masked-text {
+    -webkit-text-security: disc;
+    text-security: disc;
+}
+
+/* Custom toggle switch for theme */
+.toggle-checkbox {
+    transition: all 0.3s ease-in-out;
+}
+
+.toggle-checkbox:checked {
+    right: 0;
+    border-color: var(--accent-color);
+}
+
+.toggle-label {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+    background-color: var(--accent-color);
+}
+
+/* Ripple effect for buttons */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform .5s, opacity 1s;
+}
+
+.ripple:active:after {
+    transform: scale(0, 0);
+    opacity: .2;
+    transition: 0s;
+}
+
+/* Focus trap for modals */
+.focus-trap:focus {
+    outline: none;
+}
+
+/* Input styling based on theme */
+input, textarea, select {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: var(--input-border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(250, 204, 21, 0.15);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Button styling based on theme */
+button {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    border-radius: 6px;
+}
+
+button.bg-accent, button.bg-yellow-400 {
+    box-shadow: 0 2px 10px rgba(250, 204, 21, 0.2);
+}
+
+button.bg-accent:hover, button.bg-yellow-400:hover {
+    box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+}
+
+/* Accent colored elements */
+.text-yellow-400, .hover\:text-yellow-400:hover,
+.border-yellow-400, .hover\:border-yellow-400:hover {
+    color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+
+.bg-yellow-400, .hover\:bg-yellow-400:hover {
+    background-color: var(--accent-color);
+}
+
+/* Logged In View Specific Styles */
+#logged-in-view {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+#logged-in-view header {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Tab navigation styles */
+.border-b.border-color {
+    border-color: var(--border-color) !important;
+    background-color: var(--bg-secondary);
+}
+
+#logged-in-view .tab-btn {
+    position: relative;
+    overflow: hidden;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 16px 0;
+    background-color: var(--bg-secondary);
+}
+
+/* Light mode specific header and tab styling */
+.light-theme #logged-in-view header,
+.light-theme .border-b.border-color,
+.light-theme #logged-in-view .tab-btn {
+    background-color: var(--bg-secondary);
+}
+
+/* Specific iOS fix for header and tabs */
+@supports (-webkit-touch-callout: none) {
+    .light-theme #logged-in-view header,
+    .light-theme .border-b.border-color,
+    .light-theme #logged-in-view .tab-btn {
+        background-color: var(--bg-secondary) !important;
+    }
+}
+
+#logged-in-view .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+    border-radius: 3px 3px 0 0;
+}
+
+#logged-in-view .tab-btn:hover {
+    color: var(--text-primary);
+}
+
+#logged-in-view .tab-btn.active {
+    color: var(--accent-color);
+    font-weight: 600;
+    border-bottom: none;
+}
+
+#logged-in-view .tab-btn.active::after {
+    transform: scaleX(0.7);
+}
+
+#logged-in-view .tab-content {
+    background-color: var(--bg-primary);
+    min-height: 100%;
+}
+
+/* Card styles enhancement */
+.note-card, .todo-item, .password-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.note-card:hover, .todo-item:hover, .password-card:hover {
+    /* transform: translateY(-2px);/ */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    background-color: var(--card-hover);
+}
+
+.note-card h3, .todo-item h3, .password-card h3 {
+    color: var(--text-primary);
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+/* Modal styling enhancements */
+.modal-content {
+    background-color: var(--modal-content-bg);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal-content .border-b, .modal-content .border-t {
+    border-color: var(--border-color);
+}
+
+.modal-content input, .modal-content textarea, .modal-content select {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+}
+
+.modal-content button {
+    transition: all 0.2s ease;
+}
+
+/* Search and settings modal enhancements */
+#search-btn, #settings-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+
+#search-btn:hover, #settings-btn:hover {
+    background-color: var(--bg-tertiary);
+}
+
+/* Base body styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    background-image: radial-gradient(var(--bg-tertiary) 1px, transparent 1px);
+    background-size: 30px 30px;
+    background-position: -19px -19px;
+}
+
+.light-theme body {
+    background-image: radial-gradient(var(--bg-tertiary) 0.8px, transparent 0.8px);
+}
+
+/* COMMON COMPONENTS */
+
+/* Headers and sections */
+header {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+/* Links */
+a {
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* Text styles */
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+.text-primary {
+    color: var(--text-primary) !important;
+}
+
+.text-accent {
+    color: var(--accent-color) !important;
+}
+
+/* Backgrounds */
+.bg-primary {
+    background-color: var(--bg-primary) !important;
+}
+
+.bg-secondary {
+    background-color: var(--bg-secondary) !important;
+}
+
+.bg-tertiary {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.bg-accent {
+    background-color: var(--accent-color) !important;
+}
+
+/* Border colors */
+.border-color {
+    border-color: var(--border-color) !important;
+}
+
+.border-accent {
+    border-color: var(--accent-color) !important;
+}
+
+/* LOGGED OUT VIEW STYLES */
+#logged-out-view {
+    background-color: var(--bg-primary);
+}
+
+#logged-out-view header {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+#logged-out-view section.gradient-section {
+    background: linear-gradient(to bottom, var(--bg-primary), var(--bg-tertiary));
+}
+
+#logged-out-view .feature-card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+#logged-out-view .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    border-color: var(--accent-color);
+}
+
+#logged-out-view form input,
+#logged-out-view form textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+#logged-out-view form input:focus,
+#logged-out-view form textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.2);
+}
+
+/* Footer section */
+footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+footer .border-t {
+    border-top-color: var(--border-color);
+}
+
+/* Search and Settings screens for light mode */
+.light-theme .search-input,
+.light-theme .search-result-item {
+    background-color: var(--input-bg);
+    border-color: var(--border-color);
+}
+
+.light-theme .search-result-item:hover {
+    background-color: var(--card-hover);
+}
+
+.light-theme .bg-gray-800,
+.light-theme .bg-gray-900 {
+    background-color: var(--bg-secondary) !important;
+}
+
+.light-theme .theme-toggle-wrapper .bg-gray-700 {
+    background-color: #e4e6ef !important;
+}
+
+/* Toast notifications for light mode */
+.light-theme .toast {
+    background: var(--toast-bg);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px var(--toast-shadow);
+}
+
+/* Additional overrides for hardcoded Tailwind classes in JavaScript */
+.light-theme .bg-gray-800,
+.light-theme .bg-gray-900,
+.light-theme .bg-gray-950 {
+    background-color: var(--bg-secondary) !important;
+}
+
+.light-theme #logged-in-view .bg-gray-800,
+.light-theme #logged-in-view .bg-gray-900 {
+    background-color: var(--card-bg) !important;
+}
+
+.light-theme .border-gray-700,
+.light-theme .border-gray-800,
+.light-theme #logged-in-view .border-gray-700,
+.light-theme #logged-in-view .border-gray-800 {
+    border-color: var(--border-color) !important;
+}
+
+.light-theme .text-gray-400,
+.light-theme #logged-in-view .text-gray-400 {
+    color: var(--text-secondary) !important;
+}
+
+.light-theme .text-gray-500,
+.light-theme #logged-in-view .text-gray-500 {
+    color: var(--gray-500) !important;
+}
+
+.light-theme .text-gray-600,
+.light-theme #logged-in-view .text-gray-600 {
+    color: var(--gray-600) !important;
+}
+
+.light-theme .text-white,
+.light-theme #logged-in-view .text-white {
+    color: var(--text-primary) !important;
+}
+
+/* Fix for empty state screens in light mode */
+.light-theme #logged-in-view .text-gray-600.text-6xl {
+    color: var(--gray-500) !important;
+}
+
+/* Fix for modals in light mode */
+.light-theme .modal .bg-gray-800,
+.light-theme .modal .bg-gray-900 {
+    background-color: var(--bg-secondary) !important;
+}
+
+.light-theme .modal .border-gray-700,
+.light-theme .modal .border-gray-800 {
+    border-color: var(--border-color) !important;
+}
+
+.light-theme .modal .text-white,
+.light-theme .modal .text-gray-300 {
+    color: var(--text-primary) !important;
+}
+
+.light-theme .modal .text-gray-400, 
+.light-theme .modal .text-gray-500 {
+    color: var(--text-secondary) !important;
+}
+
+/* Floating add button in light mode */
+.light-theme #add-btn {
+    background-color: var(--accent-color);
+    color: black;
+    box-shadow: 0 4px 12px rgba(250, 204, 21, 0.3);
+}
+
+.light-theme #add-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Empty state styling */
+#notes-content .text-center, 
+#todo-content .text-center, 
+#password-content .text-center {
+    padding: 40px 0;
+}
+
+#notes-content .text-6xl, 
+#todo-content .text-6xl, 
+#password-content .text-6xl {
+    margin-bottom: 16px;
+    opacity: 0.7;
+}
+
+/* Common component polishing */
+.border {
+    border-color: var(--border-color);
+}
+
+/* Password card enhancement */
+.password-card .website-favicon {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-tertiary);
+}
+
+/* Fix for password cards with long website names */
+.password-card .flex.items-center {
+    min-width: 0; /* Important for text truncation */
+}
+
+.password-card .flex.items-center.mb-2 {
+    width: 100%;
+}
+
+.password-card .flex.items-center h3 {
+    min-width: 0;
+    flex: 1;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+}
+
+/* Search results styling */
+.search-result-item {
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    border: 1px solid var(--border-color);
+}
+
+/* Force same color scheme on mobile devices */
+@media (max-width: 767px) {
+    :root {
+        /* Reinforce desktop dark theme colors for mobile */
+        --bg-primary: #121212;    /* Main background color - almost black */
+        --bg-secondary: #1A1A1A;  /* Slightly lighter background for cards/elements */
+        --bg-tertiary: #242424;   /* Tertiary background for accents and hover states */
+        --text-primary: #FFFFFF;  /* Primary text color - white */
+        --text-secondary: #B0B0B0; /* Secondary text color - light gray */
+        --border-color: #323232;  /* Border color - dark gray */
+        --card-bg: #1A1A1A;
+        --card-hover: #242424;
+    }
+    
+    .light-theme {
+        /* Reinforce desktop light theme colors for mobile */
+        --bg-primary: #FFFFFF;    /* Main background color - white */
+        --bg-secondary: #F5F5F5;  /* Slightly darker background for cards/elements */
+        --bg-tertiary: #EFEFEF;   /* Tertiary background for accents and hover states */
+        --text-primary: #2D2D2D;  /* Primary text color - dark gray for better readability */
+        --text-secondary: #6A6A6A; /* Secondary text color - medium gray */
+        --border-color: #E5E5E5;  /* Border color - light gray */
+        --card-bg: #FFFFFF;
+        --card-hover: #F9F9F9;
+    }
+    
+    /* Fix for iOS Safari which sometimes applies its own colors */
+    body, 
+    #logged-in-view,
+    #logged-out-view,
+    .modal-content,
+    .note-card, 
+    .todo-item, 
+    .password-card {
+        -webkit-appearance: none;
+        color: var(--text-primary) !important;
+        background-color: var(--bg-primary) !important;
+    }
+    
+    header, 
+    footer, 
+    .border-b.border-color,
+    #logged-in-view .tab-btn,
+    .bg-secondary {
+        background-color: var(--bg-secondary) !important;
+    }
+    
+    .bg-tertiary {
+        background-color: var(--bg-tertiary) !important;
+    }
+    
+    /* Force color consistency on mobile forms */
+    input, textarea, select {
+        -webkit-appearance: none;
+        background-color: var(--input-bg) !important;
+        color: var(--text-primary) !important;
+        border-color: var(--input-border) !important;
+    }
+    
+    /* Fix for iOS when switching themes */
+    .light-theme header,
+    .light-theme footer,
+    .light-theme .border-b.border-color,
+    .light-theme #logged-in-view .tab-btn {
+        background-color: var(--bg-secondary) !important;
+    }
+}
+
+/* Fix for iOS color inconsistencies */
+html, body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Specific fix for iOS Safari form elements */
+@supports (-webkit-touch-callout: none) {
+    input, textarea, select, button {
+        -webkit-appearance: none !important;
+        color: var(--text-primary) !important;
+        background-color: var(--input-bg) !important;
+    }
+    
+    .bg-accent, .bg-yellow-400 {
+        background-color: var(--accent-color) !important;
+        color: black !important;
+    }
+    
+    .text-accent, .text-yellow-400 {
+        color: var(--accent-color) !important;
+    }
+    
+    /* Force consistent backgrounds */
+    .modal-content, .note-card, .todo-item, .password-card {
+        background-color: var(--card-bg) !important;
+    }
+}
+
+/* Professional confirmation dialog styling */
+.confirm-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--modal-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050; /* Higher than normal modals */
+    animation: fadeIn 0.2s ease-out;
+    padding: 20px;
+}
+
+.confirm-dialog-content {
+    background-color: var(--modal-content-bg);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.confirm-dialog-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+.confirm-dialog-header i {
+    font-size: 28px;
+    margin-right: 16px;
+    color: var(--accent-color);
+}
+
+.confirm-dialog-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.confirm-dialog-body {
+    padding: 28px 24px;
+    color: var(--text-secondary);
+    font-size: 16px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.confirm-dialog-footer {
+    padding: 16px 24px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    border-top: none;
+}
+
+.confirm-dialog-cancel {
+    background-color: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    min-width: 120px;
+    transform: translateY(0);
+    transition: all 0.25s ease;
+}
+
+.confirm-dialog-cancel:hover {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.confirm-dialog-confirm {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    min-width: 120px;
+    transform: translateY(0);
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.2);
+}
+
+.confirm-dialog-confirm:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(239, 68, 68, 0.3);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.confirm-dialog.fade-out {
+    animation: fadeOut 0.2s ease-out forwards;
+}
+
+.confirm-dialog.fade-out .confirm-dialog-content {
+    animation: slideOut 0.2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+@keyframes slideOut {
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-20px); opacity: 0; }
+}
+
+.confirm-dialog-footer button {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* PWA Installation Prompt Styles */
+.pwa-install-prompt {
+  bottom: -100px;
+  transition: transform 0.3s ease;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.pwa-install-prompt.slide-in-bottom {
+  transform: translateY(-100px);
+}
+
+.pwa-install-prompt.slide-out-bottom {
+  transform: translateY(100px);
+}
+
+.pwa-install-btn {
+  transition: background-color 0.2s ease;
+}
+
+.pwa-install-btn:hover {
+  background-color: #e8b711;
+}
+
+.pwa-close-btn {
+  transition: color 0.2s ease;
+}
+
+@media (max-width: 640px) {
+  .pwa-install-prompt {
+    padding: 12px;
+  }
+  
+  .pwa-install-prompt h3 {
+    font-size: 16px;
+  }
+  
+  .pwa-install-prompt p {
+    font-size: 12px;
+  }
+}
+
+/* Toast Notification Styles (existing) */
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 16px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: white;
+  z-index: 1000;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 90%;
+  text-align: center;
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found - XoNote</title>
+    <meta name="description" content="Page not found - XoNote" />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/dusfire/icon/css/style.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="bg-black text-white min-h-screen flex flex-col">
+    <div class="flex-grow flex flex-col items-center justify-center p-6">
+      <div class="text-center">
+        <i class="dus-quill text-yellow-400 text-6xl mb-6"></i>
+        <h1 class="text-6xl font-bold mb-4">404</h1>
+        <h2 class="text-2xl font-semibold mb-4">Page Not Found</h2>
+        <p class="text-gray-400 mb-8 max-w-md">
+          The page you are looking for might have been removed, had its name
+          changed, or is temporarily unavailable.
+        </p>
+        <a
+          href="/"
+          class="inline-flex items-center bg-yellow-400 text-black px-6 py-3 rounded-md font-medium hover:bg-yellow-500 transition"
+        >
+          <i class="bx bx-home-alt mr-2"></i>
+          Back to Home
+        </a>
+      </div>
+    </div>
+
+    <footer class="p-6 text-center text-gray-500">
+      <p>&copy; 2025 XoNote. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Check if this 404 page was shown due to service worker navigation
+      if (
+        window.location.pathname !== "/404.html" &&
+        !window.location.pathname.endsWith("/404") &&
+        !window.location.pathname.endsWith("/404/")
+      ) {
+        console.log("404 error for path:", window.location.pathname);
+      }
+    </script>
+  </body>
+</html>

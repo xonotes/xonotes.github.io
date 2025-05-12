@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+<head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0"
+    />
+    <meta name="color-scheme" content="only light dark" />
+    <meta
+      name="theme-color"
+      content="#121212"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <title>XoNote - Notes, Todo & Password Manager</title>
+    <meta
+      name="description"
+      content="Manage your notes, todo lists, and passwords securely with XoNote"
+    />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/dusfire/icon/css/style.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="site.webmanifest" />
+    <!-- Ad script will be conditionally loaded for free users -->
+    <script>
+        // Configure Tailwind for dynamic theme changes
+        tailwind.config = {
+        darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+              primary: "var(--bg-primary)",
+              secondary: "var(--bg-secondary)",
+              tertiary: "var(--bg-tertiary)",
+              accent: "var(--accent-color)",
+              "accent-hover": "var(--accent-hover)",
+            },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="theme-transition min-h-screen flex flex-col">
+    <!-- Loading Screen -->
+    <div
+      id="loading-screen"
+      class="fixed inset-0 flex items-center justify-center z-50 bg-primary"
+    >
+      <div class="text-center p-8 rounded-xl">
+        <div class="relative">
+          <i class="dus-quill text-accent text-6xl animate-pulse"></i>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"
+            ></div>
+          </div>
+        </div>
+        <h2 class="text-2xl font-bold mt-6 text-accent tracking-wide">
+          XoNote
+        </h2>
+        <p class="mt-3 text-secondary">Your secure digital notebook</p>
+        <div
+          class="mt-6 w-48 h-1.5 bg-gray-700 rounded-full mx-auto overflow-hidden"
+        >
+          <div
+            id="loading-progress"
+            class="h-full bg-accent rounded-full"
+            style="width: 0%"
+          ></div>
+        </div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div id="app" class="hidden flex-grow flex flex-col">
+        <!-- Logged Out View -->
+        <div id="logged-out-view" class="flex-grow flex flex-col">
+            <!-- Header Section -->
+        <header class="py-4 md:py-5 px-6 md:px-8 flex justify-between items-center border-b border-color sticky top-0 z-30 bg-primary/95 backdrop-blur-sm shadow-sm">
+                <div class="flex items-center">
+            <div class="flex items-center group">
+              <div class="relative mr-3 transition-transform transform group-hover:rotate-12 duration-300">
+                <i class="dus-quill text-accent text-3xl"></i>
+              </div>
+              <h1 class="text-accent text-2xl font-bold tracking-tight">XoNote</h1>
+            </div>
+          </div>
+          <nav class="hidden md:flex items-center space-x-6">
+            <a href="#features" class="text-primary hover:text-accent transition duration-200">Features</a>
+            <a href="#benefits" class="text-primary hover:text-accent transition duration-200">Why XoNote</a>
+            <a href="#contact" class="text-primary hover:text-accent transition duration-200">Contact</a>
+            <a href="faq.html" class="text-primary hover:text-accent transition duration-200">FAQ</a>
+          </nav>
+          <div class="flex items-center space-x-3">
+            <a href="login.html" class="px-4 py-2 rounded-md font-medium border border-accent text-accent hover:bg-accent/10 transition duration-200">Login</a>
+            <a href="signup.html" class="bg-accent text-black px-4 py-2 rounded-md font-medium hover:bg-accent-hover transition duration-200 shadow-sm">Sign Up</a>
+          </div>
+          <button class="md:hidden text-primary hover:text-accent" id="mobile-menu-btn">
+            <i class="bx bx-menu text-2xl"></i>
+          </button>
+        </header>
+
+        <!-- Mobile Menu (Initially Hidden) -->
+        <div id="mobile-menu" class="fixed inset-0 z-40 hidden flex-col bg-primary/95 backdrop-blur-md">
+          <div class="flex justify-end p-6">
+            <button id="close-mobile-menu" class="text-primary hover:text-accent">
+              <i class="bx bx-x text-3xl"></i>
+            </button>
+          </div>
+          <nav class="flex flex-col items-center space-y-6 text-lg p-6">
+            <a href="#features" class="text-primary hover:text-accent transition duration-200 w-full text-center py-2">Features</a>
+            <a href="#benefits" class="text-primary hover:text-accent transition duration-200 w-full text-center py-2">Why XoNote</a>
+            <a href="#contact" class="text-primary hover:text-accent transition duration-200 w-full text-center py-2">Contact</a>
+            <a href="faq.html" class="text-primary hover:text-accent transition duration-200 w-full text-center py-2">FAQ</a>
+            <div class="border-t border-color w-full my-2"></div>
+            <a href="login.html" class="w-full text-center px-4 py-3 rounded-md font-medium border border-accent text-accent hover:bg-accent/10 transition duration-200 my-1">Login</a>
+            <a href="signup.html" class="w-full text-center bg-accent text-black px-4 py-3 rounded-md font-medium hover:bg-accent-hover transition duration-200 shadow-sm my-1">Sign Up</a>
+          </nav>
+        </div>
+
+        <!-- Hero Section -->
+        <section class="py-16 md:py-24 px-6 md:px-8 bg-gradient-to-b from-primary to-tertiary text-center relative overflow-hidden">
+          <!-- Decorative elements -->
+          <div class="absolute top-20 left-10 w-64 h-64 bg-accent/5 rounded-full filter blur-3xl"></div>
+          <div class="absolute bottom-20 right-10 w-72 h-72 bg-accent/10 rounded-full filter blur-3xl"></div>
+          
+          <div class="relative z-10 max-w-5xl mx-auto">
+            <div class="inline-block mb-4 px-4 py-1.5 bg-accent/10 rounded-full text-accent text-sm font-medium">
+              <span>🚀 Secure. Simple. Synchronized.</span>
+            </div>
+            
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 text-primary leading-tight tracking-tight">
+              Your Personal <span class="text-accent">Digital Notebook</span>
+            </h2>
+            
+            <p class="text-xl text-secondary max-w-3xl mx-auto mb-10 leading-relaxed">
+              Keep your notes, tasks, and passwords organized and secure in one place.
+              <span class="hidden md:inline">Access them anytime, anywhere, from any device.</span>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+              <a href="signup.html" class="bg-accent hover:bg-accent-hover text-black px-8 py-4 rounded-lg font-medium transition duration-200 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                Get Started Free
+                <i class="bx bx-right-arrow-alt ml-2 align-middle"></i>
+              </a>
+              <a href="#features" class="border border-accent/50 text-accent hover:bg-accent/10 px-8 py-4 rounded-lg font-medium transition duration-200 text-lg">
+                See How It Works
+              </a>
+            </div>
+            
+            <div class="relative max-w-4xl mx-auto">
+              <div class="absolute inset-0 -m-6 bg-accent/5 rounded-3xl filter blur-md"></div>
+              <div class="relative bg-tertiary rounded-2xl p-2 shadow-2xl border border-accent/10">
+                <img src="images/XoNote-App-Preview.jpg" alt="XoNote App Preview" class="rounded-xl shadow-sm w-full" />
+              </div>
+              
+              <div class="absolute -bottom-5 left-1/2 transform -translate-x-1/2 bg-tertiary px-5 py-2 rounded-full shadow-lg border border-accent/20 flex items-center space-x-2">
+                <div class="flex -space-x-2">
+                  <div class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs">JD</div>
+                  <div class="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs">KS</div>
+                  <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center text-white text-xs">TM</div>
+                </div>
+                <span class="text-xs text-secondary">Join 2,500+ users</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="py-20 px-6 md:px-8 bg-tertiary relative">
+          <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+              <div class="inline-block mb-3 px-3 py-1 bg-accent/10 rounded-full text-accent text-sm font-medium">
+                <span>✨ Powerful Features</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-primary">
+                Everything You Need In One Place
+              </h2>
+              <p class="mt-4 text-secondary max-w-2xl mx-auto">
+                XoNote combines the best features of a note-taking app, todo list, and password manager into one seamless experience.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
+              <!-- Notes Feature -->
+              <div class="feature-card group p-6 md:p-8 rounded-2xl bg-secondary hover:bg-primary border border-color hover:border-accent/30 transition duration-300 shadow-sm hover:shadow-md relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-40 h-40 bg-accent/5 rounded-full -mr-20 -mt-20 group-hover:bg-accent/10 transition-all duration-300"></div>
+                
+                <div class="relative">
+                  <div class="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 text-accent mb-6 group-hover:bg-accent/20 transition-all duration-300">
+                    <i class="bx bx-notepad text-2xl"></i>
+                  </div>
+                  
+                  <h3 class="text-xl font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">Smart Notes</h3>
+                  
+                  <p class="text-secondary mb-6">
+                    Take rich notes with formatting, organize them into categories, and find them instantly with powerful search.
+                  </p>
+                  
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Rich text formatting</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Instant search across all notes</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Automatic syncing across devices</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Todo Feature -->
+              <div class="feature-card group p-6 md:p-8 rounded-2xl bg-secondary hover:bg-primary border border-color hover:border-accent/30 transition duration-300 shadow-sm hover:shadow-md relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-40 h-40 bg-accent/5 rounded-full -mr-20 -mt-20 group-hover:bg-accent/10 transition-all duration-300"></div>
+                
+                <div class="relative">
+                  <div class="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 text-accent mb-6 group-hover:bg-accent/20 transition-all duration-300">
+                    <i class="bx bx-task text-2xl"></i>
+                  </div>
+                  
+                  <h3 class="text-xl font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">Intuitive Todo Lists</h3>
+                  
+                  <p class="text-secondary mb-6">
+                    Create and manage tasks with ease. Set priorities, add descriptions, and track completion with simple gestures.
+                  </p>
+                  
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Simple and fast task creation</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Task completion tracking</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Organize by priority and categories</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Password Feature -->
+              <div class="feature-card group p-6 md:p-8 rounded-2xl bg-secondary hover:bg-primary border border-color hover:border-accent/30 transition duration-300 shadow-sm hover:shadow-md relative overflow-hidden">
+                <div class="absolute right-0 top-0 w-40 h-40 bg-accent/5 rounded-full -mr-20 -mt-20 group-hover:bg-accent/10 transition-all duration-300"></div>
+                
+                <div class="relative">
+                  <div class="flex items-center justify-center w-14 h-14 rounded-xl bg-accent/10 text-accent mb-6 group-hover:bg-accent/20 transition-all duration-300">
+                    <i class="bx bx-lock-alt text-2xl"></i>
+                  </div>
+                  
+                  <h3 class="text-xl font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">Secure Password Vault</h3>
+                  
+                  <p class="text-secondary mb-6">
+                    Store all your passwords securely. Generate strong passwords and access them with one click when needed.
+                  </p>
+                  
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">End-to-end encryption</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">Password generator</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="bx bx-check text-accent mt-1 mr-2"></i>
+                      <span class="text-secondary text-sm">One-click copy to clipboard</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Benefits Section -->
+        <section id="benefits" class="py-20 px-6 md:px-8 bg-primary relative">
+          <div class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-tertiary to-transparent"></div>
+          
+          <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+              <div class="inline-block mb-3 px-3 py-1 bg-accent/10 rounded-full text-accent text-sm font-medium">
+                <span>🛡️ Why Choose XoNote</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-primary">
+                Built With Your Needs In Mind
+              </h2>
+              <p class="mt-4 text-secondary max-w-2xl mx-auto">
+                We've designed XoNote to be the most secure, user-friendly, and versatile digital notebook available.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <!-- Security -->
+              <div class="bg-secondary/50 backdrop-blur-sm p-6 rounded-2xl border border-color hover:border-accent/20 transition duration-300 shadow-sm hover:shadow-md group">
+                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 text-accent mb-5 group-hover:bg-accent/20 transition-all duration-300">
+                  <i class="bx bx-shield-quarter text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">
+                  Secure by Design
+                </h3>
+                <p class="text-secondary text-sm">
+                  End-to-end encryption keeps your data private and secure. Your information is only accessible to you.
+                </p>
+              </div>
+              
+              <!-- Cross-platform -->
+              <div class="bg-secondary/50 backdrop-blur-sm p-6 rounded-2xl border border-color hover:border-accent/20 transition duration-300 shadow-sm hover:shadow-md group">
+                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 text-accent mb-5 group-hover:bg-accent/20 transition-all duration-300">
+                  <i class="bx bx-devices text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">
+                  Works Everywhere
+                </h3>
+                <p class="text-secondary text-sm">
+                  Access your data from any device. Works on desktop, mobile, and tablet with seamless syncing.
+                </p>
+              </div>
+              
+              <!-- Design -->
+              <div class="bg-secondary/50 backdrop-blur-sm p-6 rounded-2xl border border-color hover:border-accent/20 transition duration-300 shadow-sm hover:shadow-md group">
+                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 text-accent mb-5 group-hover:bg-accent/20 transition-all duration-300">
+                  <i class="bx bx-paint text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">
+                  Beautiful Interface
+                </h3>
+                <p class="text-secondary text-sm">
+                  Clean, intuitive design makes finding and creating content a pleasure. Dark and light themes available.
+                </p>
+              </div>
+              
+              <!-- Sync -->
+              <div class="bg-secondary/50 backdrop-blur-sm p-6 rounded-2xl border border-color hover:border-accent/20 transition duration-300 shadow-sm hover:shadow-md group">
+                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-accent/10 text-accent mb-5 group-hover:bg-accent/20 transition-all duration-300">
+                  <i class="bx bx-sync text-2xl"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-3 text-primary group-hover:text-accent transition-all duration-300">
+                  Real-time Sync
+                </h3>
+                <p class="text-secondary text-sm">
+                  Changes automatically sync across all your devices in real-time. Never lose your important data.
+                </p>
+              </div>
+            </div>
+            
+            <!-- Extra benefits -->
+            <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="bg-secondary/30 backdrop-blur-sm p-6 rounded-2xl flex items-center">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/10 text-green-500">
+                    <i class="bx bx-check text-xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium text-primary">Privacy Focused</h4>
+                  <p class="text-secondary text-sm mt-1">We don't sell your data or show ads</p>
+                </div>
+              </div>
+              
+              <div class="bg-secondary/30 backdrop-blur-sm p-6 rounded-2xl flex items-center">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/10 text-green-500">
+                    <i class="bx bx-check text-xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium text-primary">Offline Access</h4>
+                  <p class="text-secondary text-sm mt-1">Work without internet connection</p>
+                </div>
+              </div>
+              
+              <div class="bg-secondary/30 backdrop-blur-sm p-6 rounded-2xl flex items-center">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="flex items-center justify-center w-10 h-10 rounded-full bg-green-500/10 text-green-500">
+                    <i class="bx bx-check text-xl"></i>
+                  </div>
+                </div>
+                <div>
+                  <h4 class="font-medium text-primary">Regular Updates</h4>
+                  <p class="text-secondary text-sm mt-1">New features added monthly</p>
+                </div>
+              </div>
+            </div>
+                </div>
+            </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-6 md:px-8 bg-tertiary relative">
+          <div class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-primary to-transparent"></div>
+          <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent/5 rounded-full filter blur-3xl"></div>
+          
+          <div class="max-w-5xl mx-auto relative z-10">
+            <div class="text-center mb-12">
+              <div class="inline-block mb-3 px-3 py-1 bg-accent/10 rounded-full text-accent text-sm font-medium">
+                <span>💬 Get In Touch</span>
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold text-primary">
+                We'd Love To Hear From You
+              </h2>
+              <p class="mt-4 text-secondary max-w-2xl mx-auto">
+                Have questions, feedback, or need help? Our team is here to assist you.
+              </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
+              <!-- Contact Info -->
+              <div class="md:col-span-2 bg-secondary/50 backdrop-blur-sm p-6 rounded-2xl border border-color shadow-sm">
+                <h3 class="text-lg font-bold mb-6 text-primary">Contact Information</h3>
+                
+                <div class="space-y-6">
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 mt-1">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 text-accent">
+                        <i class="bx bx-envelope text-xl"></i>
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="text-sm font-medium text-primary">Email Us</h4>
+                      <p class="text-accent mt-1 text-sm">support@xonote.app</p>
+                      <p class="text-secondary text-xs mt-1">We'll respond within 24 hours</p>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="flex-shrink-0 mt-1">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 text-accent">
+                        <i class="bx bx-support text-xl"></i>
+                      </div>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="text-sm font-medium text-primary">Help Center</h4>
+                      <p class="text-accent mt-1 text-sm">help.xonote.app</p>
+                      <p class="text-secondary text-xs mt-1">Find answers to common questions</p>
+                    </div>
+                </div>
+
+                    <div class="flex items-start">
+                    <div class="flex-shrink-0 mt-1">
+                      <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/10 text-accent">
+                        <i class="bx bx-map text-xl"></i>
+                        </div>
+                    </div>
+                    <div class="ml-4">
+                      <h4 class="text-sm font-medium text-primary">Location</h4>
+                      <p class="text-accent mt-1 text-sm">San Francisco, CA</p>
+                      <p class="text-secondary text-xs mt-1">123 Innovation Street</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="mt-8 pt-8 border-t border-color">
+                  <h4 class="text-sm font-medium text-primary mb-4">Connect With Us</h4>
+                  <div class="flex space-x-4">
+                    <a href="#" class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                      <i class="bx bxl-twitter text-lg"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                      <i class="bx bxl-facebook text-lg"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                      <i class="bx bxl-instagram text-lg"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-secondary flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                      <i class="bx bxl-github text-lg"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Contact Form -->
+              <div class="md:col-span-3 bg-secondary/50 backdrop-blur-sm p-6 rounded-2xl border border-color shadow-sm">
+                <h3 class="text-lg font-bold mb-6 text-primary">Send Us a Message</h3>
+                
+                <form id="contact-form" class="space-y-6">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="form-group">
+                      <label for="name" class="block mb-2 text-sm font-medium text-primary">Your Name</label>
+                      <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <i class="bx bx-user text-secondary"></i>
+                        </div>
+                        <input type="text" id="name" class="w-full pl-10 pr-4 py-3 bg-tertiary border border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="email" class="block mb-2 text-sm font-medium text-primary">Your Email</label>
+                      <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                          <i class="bx bx-envelope text-secondary"></i>
+                        </div>
+                        <input type="email" id="email" class="w-full pl-10 pr-4 py-3 bg-tertiary border border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                </div>
+                  
+                  <div class="form-group">
+                    <label for="subject" class="block mb-2 text-sm font-medium text-primary">Subject</label>
+                    <div class="relative">
+                      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i class="bx bx-help-circle text-secondary"></i>
+                      </div>
+                      <input type="text" id="subject" class="w-full pl-10 pr-4 py-3 bg-tertiary border border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="How can we help you?" required>
+                            </div>
+                            </div>
+                  
+                  <div class="form-group">
+                    <label for="message" class="block mb-2 text-sm font-medium text-primary">Your Message</label>
+                    <div class="relative">
+                      <div class="absolute top-3 left-3 flex items-start pointer-events-none">
+                        <i class="bx bx-message-detail text-secondary"></i>
+                            </div>
+                      <textarea id="message" rows="5" class="w-full pl-10 pr-4 py-3 bg-tertiary border border-color rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent" placeholder="Tell us what you need help with..." required></textarea>
+                    </div>
+                  </div>
+                  
+                  <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                      <input id="privacy" type="checkbox" class="w-4 h-4 accent-accent bg-tertiary border border-color rounded" required>
+                    </div>
+                    <label for="privacy" class="ml-3 text-sm text-secondary">
+                      I agree to the <a href="privacy.html" class="text-accent hover:underline">Privacy Policy</a> and consent to be contacted regarding my message.
+                    </label>
+                  </div>
+                  
+                  <button type="submit" class="inline-flex items-center justify-center w-full bg-accent text-black py-3 px-4 rounded-lg font-medium hover:bg-accent-hover transition duration-200 shadow-sm">
+                    <i class="bx bx-send mr-2"></i>
+                    Send Message
+                  </button>
+                        </form>
+              </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer Section -->
+        <footer class="pt-20 pb-10 px-6 md:px-8 bg-primary border-t border-color relative">
+          <div class="absolute top-0 left-0 right-0 h-12 bg-gradient-to-b from-tertiary to-transparent"></div>
+          
+          <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 md:gap-8 mb-12">
+              <!-- Brand Section -->
+              <div class="md:col-span-1">
+                <div class="flex items-center mb-6 group">
+                  <div class="relative mr-3 transition-transform transform group-hover:rotate-12 duration-300">
+                    <i class="dus-quill text-accent text-3xl"></i>
+                  </div>
+                  <h2 class="text-accent text-2xl font-bold tracking-tight">XoNote</h2>
+                </div>
+                <p class="text-secondary text-sm max-w-xs mb-6">
+                  Your secure digital notebook for notes, todos, and passwords. Accessible anywhere, anytime.
+                </p>
+                
+                <div class="flex space-x-4 mb-6">
+                  <a href="#" class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                    <i class="bx bxl-twitter text-lg"></i>
+                  </a>
+                  <a href="#" class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                    <i class="bx bxl-facebook text-lg"></i>
+                  </a>
+                  <a href="#" class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                    <i class="bx bxl-instagram text-lg"></i>
+                  </a>
+                  <a href="#" class="w-9 h-9 rounded-full bg-secondary/50 flex items-center justify-center text-secondary hover:text-accent hover:bg-accent/10 transition duration-200">
+                    <i class="bx bxl-github text-lg"></i>
+                  </a>
+                </div>
+                
+                <div class="flex items-center space-x-2 text-sm text-secondary mb-6">
+                  <a href="index.html" class="inline-flex bg-secondary/30 px-3 py-1 rounded-full hover:text-accent transition duration-200">
+                    <span class="flex items-center"><i class="bx bx-chevron-left text-lg mr-1"></i> Home</span>
+                  </a>
+                  <a href="#features" class="inline-flex bg-secondary/30 px-3 py-1 rounded-full hover:text-accent transition duration-200">
+                    <span class="flex items-center"><i class="bx bx-chevron-up text-lg mr-1"></i> Top</span>
+                  </a>
+                            </div>
+                        </div>
+              
+              <!-- Quick Links -->
+              <div class="md:col-span-1">
+                <h3 class="text-lg font-semibold mb-6 text-primary">Product</h3>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="#features" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Features
+                    </a>
+                  </li>
+                  <li>
+                    <a href="faq.html" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      FAQ
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Pricing
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Security
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Updates
+                    </a>
+                  </li>
+                                </ul>
+                            </div>
+              
+              <!-- Company Links -->
+              <div class="md:col-span-1">
+                <h3 class="text-lg font-semibold mb-6 text-primary">Company</h3>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="about.html" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a href="blog.html" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Blog
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Careers
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#contact" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Contact
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Partners
+                    </a>
+                  </li>
+                                </ul>
+                            </div>
+              
+              <!-- Legal Links -->
+              <div class="md:col-span-1">
+                <h3 class="text-lg font-semibold mb-6 text-primary">Legal</h3>
+                <ul class="space-y-3">
+                  <li>
+                    <a href="privacy.html" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a href="terms.html" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Terms of Service
+                    </a>
+                  </li>
+                  <li>
+                    <a href="cookie-policy.html" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Cookie Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      GDPR Compliance
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="text-secondary hover:text-accent transition duration-200 flex items-center">
+                      <i class="bx bx-chevron-right text-accent/50 mr-2 text-sm"></i>
+                      Data Security
+                    </a>
+                  </li>
+                                </ul>
+                            </div>
+                        </div>
+            
+            <!-- Bottom Section -->
+                    <div class="pt-8 border-t border-color flex flex-col md:flex-row justify-between items-center">
+              <div class="flex flex-col sm:flex-row items-center mb-6 md:mb-0">
+                <p class="text-secondary text-sm mb-3 sm:mb-0 sm:mr-6">© 2025 XoNote. All rights reserved.</p>
+                <div class="flex space-x-4 text-sm">
+                  <a href="privacy.html" class="text-secondary hover:text-accent transition">Privacy</a>
+                  <a href="terms.html" class="text-secondary hover:text-accent transition">Terms</a>
+                  <a href="cookie-policy.html" class="text-secondary hover:text-accent transition">Cookies</a>
+                </div>
+              </div>
+              
+              <div class="flex items-center">
+                <div class="flex items-center mr-4">
+                  <span class="mr-2 text-sm text-secondary">Dark Mode</span>
+                  <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" class="sr-only peer" id="theme-toggle">
+                    <div class="w-11 h-6 bg-secondary rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-accent after:border-secondary after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-accent/20"></div>
+                  </label>
+                </div>
+                <div class="text-sm text-secondary">
+                  <a href="#" class="hover:text-accent transition">
+                    <i class="bx bx-world mr-1"></i> English
+                  </a>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Logged In View (Initially Hidden) -->
+        <div id="logged-in-view" class="hidden flex-grow flex flex-col">
+            <!-- App Header -->
+            <header class="py-4 px-6 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="dus-quill text-accent text-3xl mr-2"></i>
+                    <h1 class="text-accent text-2xl font-bold">XoNote</h1>
+                </div>
+                <div class="flex items-center">
+            <button
+              id="search-btn"
+              class="text-accent hover:bg-tertiary p-2 rounded-lg mr-2"
+            >
+              <i class="bx bx-search text-2xl"></i>
+            </button>
+            <button
+              id="settings-btn"
+              class="text-accent hover:bg-tertiary p-2 rounded-lg"
+            >
+              <i class="bx bx-cog text-2xl"></i>
+            </button>
+                </div>
+            </header>
+
+            <!-- App Tabs -->
+            <div class="border-b border-color">
+                <div id="tabs-container" class="flex">
+            <button
+              class="tab-btn active flex-1 py-4 text-center text-yellow-400"
+              data-tab="notes"
+            >
+              Notes
+            </button>
+            <button class="tab-btn flex-1 py-4 text-center text-gray-400" data-tab="todo">
+              ToDo
+            </button>
+            <button class="tab-btn flex-1 py-4 text-center text-gray-400" data-tab="password">
+              Password
+            </button>
+            <button class="tab-btn flex-1 py-4 text-center text-gray-400" data-tab="contact">
+              Contact
+            </button>
+                </div>
+            </div>
+<script async="async" data-cfasync="false" src="//pl26615927.profitableratecpm.com/50b0737bbd43ffd93aa58164d1c06c20/invoke.js"></script>
+<div id="container-50b0737bbd43ffd93aa58164d1c06c20"></div>
+            <!-- Tab Content -->
+            <div id="tab-content-container" class="flex-grow overflow-auto">
+                <!-- Notes Tab -->
+                <div id="notes-content" class="tab-content p-4">
+                    <!-- Notes will be dynamically added here -->
+                </div>
+
+                <!-- Todo Tab -->
+                <div id="todo-content" class="tab-content p-4 hidden">
+                    <!-- Todo lists will be dynamically added here -->
+                </div>
+
+                <!-- Password Tab -->
+                <div id="password-content" class="tab-content p-4 hidden">
+                    <!-- Passwords will be dynamically added here -->
+                </div>
+
+                <!-- Contact Tab -->
+                <div id="contact-content" class="tab-content p-4 hidden">
+                    <!-- Contacts will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Add Button (Floating) -->
+            <div class="fixed bottom-8 right-8">
+          <button
+            id="add-btn"
+            class="text-black w-16 h-16 rounded-full flex items-center justify-center shadow-lg hover:bg-accent-hover transition"
+          >
+                    <i class="bx bx-plus text-3xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals Container -->
+    <div id="modals-container"></div>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyDb30Y9CHkT-hU-QrigzFib8y34wwTXT_E",
+          authDomain: "xo-note.firebaseapp.com",
+          projectId: "xo-note",
+          storageBucket: "xo-note.firebasestorage.app",
+          messagingSenderId: "828768568824",
+          appId: "1:828768568824:web:55042138b350065239020d",
+        measurementId: "G-GC0SWH8MJ1",
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        // Export for other scripts
+        window.firebaseApp = app;
+        window.firebaseDb = db;
+        window.firebaseAuth = auth;
+    </script>
+    
+    <!-- App Scripts -->
+    <script src="js/App.js" type="module"></script>
+    
+    <!-- Custom Landing Page Scripts -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Mobile menu functionality
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMobileMenuBtn = document.getElementById('close-mobile-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu && closeMobileMenuBtn) {
+          mobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+            document.body.classList.add('overflow-hidden');
+          });
+          
+          closeMobileMenuBtn.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+            document.body.classList.remove('overflow-hidden');
+          });
+          
+          // Close mobile menu when clicking on a link
+          const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+          mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+              mobileMenu.classList.add('hidden');
+              mobileMenu.classList.remove('flex');
+              document.body.classList.remove('overflow-hidden');
+            });
+          });
+        }
+        
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+        
+        if (themeToggle) {
+          // Check for saved theme preference or use user's system preference
+          const savedTheme = localStorage.getItem('xonote-theme');
+          const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          
+          // Set initial theme
+          if (savedTheme === 'light') {
+            htmlElement.classList.remove('dark-theme');
+            htmlElement.classList.add('light-theme');
+            themeToggle.checked = true;
+          } else if (savedTheme === 'dark' || systemPrefersDark) {
+            htmlElement.classList.add('dark-theme');
+            htmlElement.classList.remove('light-theme');
+            themeToggle.checked = false;
+          }
+          
+          // Toggle theme when checkbox is clicked
+          themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+              htmlElement.classList.remove('dark-theme');
+              htmlElement.classList.add('light-theme');
+              localStorage.setItem('xonote-theme', 'light');
+            } else {
+              htmlElement.classList.add('dark-theme');
+              htmlElement.classList.remove('light-theme');
+              localStorage.setItem('xonote-theme', 'dark');
+            }
+          });
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId !== '#') {
+              e.preventDefault();
+              const targetElement = document.querySelector(targetId);
+              if (targetElement) {
+                window.scrollTo({
+                  top: targetElement.offsetTop - 80, // Adjust for header height
+                  behavior: 'smooth'
+                });
+              }
+            }
+          });
+        });
+        
+        // Form submission handling
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (!name || !email || !message) {
+              alert('Please fill in all required fields.');
+              return;
+            }
+            
+            // Create success message
+            const formContainer = contactForm.parentNode;
+            const successMessage = document.createElement('div');
+            successMessage.className = 'bg-green-500/20 border border-green-500/30 rounded-lg p-4 text-center';
+            successMessage.innerHTML = `
+              <div class="flex items-center justify-center w-12 h-12 mx-auto bg-green-500/20 rounded-full mb-4">
+                <i class="bx bx-check text-green-500 text-3xl"></i>
+              </div>
+              <h3 class="text-xl font-bold mb-2 text-primary">Thank You!</h3>
+              <p class="text-secondary mb-6">Your message has been sent successfully. We'll get back to you soon.</p>
+              <button class="new-message-btn px-4 py-2 bg-accent text-black rounded-lg hover:bg-accent-hover transition duration-200">
+                Send Another Message
+              </button>
+            `;
+            
+            // Replace form with success message
+            contactForm.classList.add('hidden');
+            formContainer.appendChild(successMessage);
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Add event listener to "Send Another Message" button
+            const newMessageBtn = successMessage.querySelector('.new-message-btn');
+            if (newMessageBtn) {
+              newMessageBtn.addEventListener('click', function() {
+                successMessage.remove();
+                contactForm.classList.remove('hidden');
+              });
+            }
+          });
+        }
+      });
+    </script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      // Register the service worker for PWA functionality
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('service-worker.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            })
+            .catch(error => {
+              console.log('ServiceWorker registration failed: ', error);
+            });
+        });
+      }
+    </script>
+</body>
+</html>

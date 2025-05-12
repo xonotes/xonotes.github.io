@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en" class="dark-theme">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0"
+    />
+    <meta name="color-scheme" content="only light dark" />
+    <meta
+      name="theme-color"
+      content="#121212"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta
+      name="theme-color"
+      content="#ffffff"
+      media="(prefers-color-scheme: light)"
+    />
+    <title>Privacy Policy - XoNote</title>
+    <meta
+      name="description"
+      content="Privacy Policy for XoNote - Notes, Todo & Password Manager"
+    />
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="assets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="shortcut icon" href="assets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/apple-touch-icon.png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/dusfire/icon/css/style.css"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="manifest" href="site.webmanifest" />
+  </head>
+  <body class="bg-primary text-primary min-h-screen flex flex-col">
+    <!-- Loading Screen -->
+    <div
+      id="loading-screen"
+      class="fixed inset-0 flex items-center justify-center z-50 bg-primary"
+    >
+      <div class="text-center p-8 rounded-xl">
+        <div class="relative">
+          <i class="dus-quill text-accent text-6xl animate-pulse"></i>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"
+            ></div>
+          </div>
+        </div>
+        <h2 class="text-2xl font-bold mt-6 text-accent tracking-wide">
+          XoNote
+        </h2>
+        <p class="mt-3 text-secondary">Loading Privacy Policy</p>
+        <div
+          class="mt-6 w-48 h-1.5 bg-gray-700 rounded-full mx-auto overflow-hidden"
+        >
+          <div
+            id="loading-progress"
+            class="h-full bg-accent rounded-full"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="app" class="hidden flex-grow flex flex-col">
+      <!-- Header -->
+      <header
+        class="bg-secondary py-4 px-6 flex justify-between items-center border-b border-color"
+      >
+        <div class="flex items-center">
+          <a href="https://xonotes.github.io/" class="flex items-center group">
+            <div
+              class="relative mr-3 transition-transform transform group-hover:rotate-12"
+            >
+              <i class="dus-quill text-accent text-3xl"></i>
+            </div>
+            <h1 class="text-accent text-2xl font-bold">XoNote</h1>
+          </a>
+        </div>
+        <nav class="hidden md:flex space-x-6">
+          <a
+            href="https://xonotes.github.io/"
+            class="text-secondary hover:text-primary transition"
+            >Home</a
+          >
+          <a
+            href="terms.html"
+            class="text-secondary hover:text-primary transition"
+            >Terms</a
+          >
+          <a href="privacy.html" class="text-accent font-medium">Privacy</a>
+          <a
+            href="cookie-policy.html"
+            class="text-secondary hover:text-primary transition"
+            >Cookies</a
+          >
+          <a
+            href="login.html"
+            class="text-secondary hover:text-primary transition"
+            >Login</a
+          >
+          <a
+            href="signup.html"
+            class="text-secondary hover:text-primary transition"
+            >Sign Up</a
+          >
+        </nav>
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-secondary hover:text-primary"
+        >
+          <i class="bx bx-menu text-2xl"></i>
+        </button>
+      </header>
+
+      <!-- Mobile Menu (Hidden by default) -->
+      <div
+        id="mobile-menu"
+        class="hidden bg-secondary border-b border-color py-4 px-6 md:hidden"
+      >
+        <nav class="flex flex-col space-y-4">
+          <a
+            href="https://xonotes.github.io/"
+            class="text-secondary hover:text-primary transition"
+            >Home</a
+          >
+          <a
+            href="terms.html"
+            class="text-secondary hover:text-primary transition"
+            >Terms</a
+          >
+          <a href="privacy.html" class="text-accent font-medium">Privacy</a>
+          <a
+            href="cookie-policy.html"
+            class="text-secondary hover:text-primary transition"
+            >Cookies</a
+          >
+          <a
+            href="login.html"
+            class="text-secondary hover:text-primary transition"
+            >Login</a
+          >
+          <a
+            href="signup.html"
+            class="text-secondary hover:text-primary transition"
+            >Sign Up</a
+          >
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+      <main
+        class="flex-grow py-8 px-4 md:px-8 lg:px-16 max-w-5xl mx-auto w-full"
+      >
+        <div class="bg-secondary p-6 md:p-8 rounded-lg border border-color">
+          <h1 class="text-3xl font-bold mb-6">Privacy Policy</h1>
+          <p class="text-sm text-secondary mb-6">Last Updated: July 15, 2025</p>
+
+          <div class="space-y-6 text-secondary">
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                1. Introduction
+              </h2>
+              <p>
+                Welcome to XoNote ("we," "our," or "us"). This Privacy Policy
+                explains how we collect, use, disclose, and safeguard your
+                information when you use our application, website, and services
+                (collectively, the "Service"). Please read this Privacy Policy
+                carefully. By using the Service, you consent to the data
+                practices described in this Privacy Policy.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                2. Information We Collect
+              </h2>
+              <p>
+                We collect information that you provide directly to us,
+                information we collect automatically when you use the Service,
+                and information from third parties.
+              </p>
+
+              <h3 class="text-lg font-medium text-primary">
+                2.1 Information You Provide
+              </h3>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>
+                  Account Information: Email address, name, and password when
+                  you register for an account.
+                </li>
+                <li>
+                  User Content: Notes, todo lists, passwords, and any other
+                  content you create, upload, or store using the Service.
+                </li>
+                <li>
+                  Communications: Information you provide when you contact us or
+                  respond to our communications.
+                </li>
+                <li>
+                  Payment Information: If you upgrade to premium features, we
+                  collect payment information through our third-party payment
+                  processors.
+                </li>
+              </ul>
+
+              <h3 class="text-lg font-medium text-primary">
+                2.2 Information Collected Automatically
+              </h3>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>
+                  Usage Data: Information about how you use the Service,
+                  including access times, pages viewed, and the routes by which
+                  you access the Service.
+                </li>
+                <li>
+                  Device Information: Information about your device, such as IP
+                  address, device type, operating system, and browser type.
+                </li>
+                <li>
+                  Cookies and Similar Technologies: We use cookies and similar
+                  tracking technologies to track activity on our Service and
+                  hold certain information.
+                </li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                3. How We Use Your Information
+              </h2>
+              <p>We use the information we collect to:</p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Provide, maintain, and improve the Service;</li>
+                <li>Process transactions and send related information;</li>
+                <li>
+                  Send administrative messages, such as confirmations, updates,
+                  security alerts, and support messages;
+                </li>
+                <li>Respond to your comments, questions, and requests;</li>
+                <li>
+                  Understand how users interact with the Service to improve it;
+                </li>
+                <li>
+                  Detect, investigate, and prevent fraudulent transactions and
+                  other illegal activities;
+                </li>
+                <li>Personalize and improve your experience;</li>
+                <li>Comply with legal obligations.</li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                4. How We Share Your Information
+              </h2>
+              <p>We may share your information in the following situations:</p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>
+                  With service providers who perform services on our behalf;
+                </li>
+                <li>
+                  In connection with, or during negotiations of, any merger,
+                  sale of company assets, financing, or acquisition;
+                </li>
+                <li>
+                  If we believe disclosure is necessary to comply with
+                  applicable laws, regulations, or legal processes;
+                </li>
+                <li>
+                  To protect the rights, property, and safety of XoNote, our
+                  users, or others;
+                </li>
+                <li>With your consent or at your direction.</li>
+              </ul>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                5. Data Security
+              </h2>
+              <p>
+                We implement reasonable security measures to protect your data.
+                However, no method of transmission over the Internet or
+                electronic storage is 100% secure. While we strive to use
+                commercially acceptable means to protect your personal
+                information, we cannot guarantee its absolute security.
+              </p>
+
+              <p>
+                Your passwords stored in the Service are encrypted using
+                industry-standard encryption methods. We do not have access to
+                your unencrypted passwords. However, we recommend that you take
+                steps to protect your passwords and sensitive information,
+                including using strong, unique passwords and not sharing your
+                account credentials.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                6. Your Data Protection Rights
+              </h2>
+              <p>
+                Depending on your location, you may have the following rights:
+              </p>
+              <ul class="list-disc pl-6 space-y-2">
+                <li>Access: Request access to your personal information.</li>
+                <li>
+                  Correction: Request correction of inaccuracies in your
+                  personal information.
+                </li>
+                <li>
+                  Deletion: Request deletion of your personal information.
+                </li>
+                <li>
+                  Restriction: Request restriction of processing of your
+                  personal information.
+                </li>
+                <li>
+                  Data Portability: Request transfer of your personal
+                  information to another service.
+                </li>
+                <li>
+                  Objection: Object to processing of your personal information.
+                </li>
+              </ul>
+              <p>
+                To exercise these rights, please contact us using the
+                information provided in the "Contact Us" section.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                7. Children's Privacy
+              </h2>
+              <p>
+                The Service is not intended for children under the age of 13. We
+                do not knowingly collect personal information from children
+                under 13. If you are a parent or guardian and you are aware that
+                your child has provided us with personal information, please
+                contact us. If we discover that a child under 13 has provided us
+                with personal information, we will delete such information from
+                our servers.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                8. International Data Transfers
+              </h2>
+              <p>
+                Your information may be transferred to, and maintained on,
+                computers located outside of your state, province, country, or
+                governmental jurisdiction where data protection laws may differ.
+                If you are located outside the United States and choose to
+                provide information to us, please note that we transfer the
+                information to the United States and process it there.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                9. Cookies and Similar Technologies
+              </h2>
+              <p>
+                We use cookies and similar tracking technologies to track
+                activity on our Service and hold certain information. Cookies
+                are files with a small amount of data which may include an
+                anonymous unique identifier. You can instruct your browser to
+                refuse all cookies or to indicate when a cookie is being sent.
+                However, if you do not accept cookies, you may not be able to
+                use some portions of our Service.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                10. Third-Party Links
+              </h2>
+              <p>
+                The Service may contain links to third-party websites or
+                services that are not owned or controlled by XoNote. We have no
+                control over, and assume no responsibility for, the content,
+                privacy policies, or practices of any third-party websites or
+                services. We encourage you to review the privacy policies of any
+                third-party websites or services you visit.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">
+                11. Changes to This Privacy Policy
+              </h2>
+              <p>
+                We may update our Privacy Policy from time to time. We will
+                notify you of any changes by posting the new Privacy Policy on
+                this page and updating the "Last Updated" date. You are advised
+                to review this Privacy Policy periodically for any changes.
+                Changes to this Privacy Policy are effective when they are
+                posted on this page.
+              </p>
+            </section>
+
+            <section class="space-y-3">
+              <h2 class="text-xl font-semibold text-primary">12. Contact Us</h2>
+              <p>
+                If you have any questions about this Privacy Policy, please
+                contact us at:
+              </p>
+              <p>Email: privacy@xonote.app</p>
+              <p>Address: XoNote Inc., 123 App Street, Digital City 10001</p>
+            </section>
+          </div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="py-8 px-6 bg-secondary border-t border-color">
+        <div class="max-w-6xl mx-auto">
+          <div class="flex flex-col md:flex-row justify-between mb-8">
+            <div class="mb-8 md:mb-0">
+              <div class="flex items-center mb-4">
+                <i class="dus-quill text-accent text-3xl mr-2"></i>
+                <h2 class="text-accent text-2xl font-bold">XoNote</h2>
+              </div>
+              <p class="text-secondary max-w-xs">
+                Your secure digital notebook for notes, todos, and passwords.
+              </p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+              <div>
+                <h3 class="text-lg font-semibold mb-4 text-primary">Product</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="https://xonotes.github.io/#features"
+                      class="text-secondary hover:text-accent transition"
+                      >Features</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://xonotes.github.io/"
+                      class="text-secondary hover:text-accent transition"
+                      >Pricing</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://xonotes.github.io/"
+                      class="text-secondary hover:text-accent transition"
+                      >FAQ</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-4 text-primary">Account</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a
+                      href="login.html"
+                      class="text-secondary hover:text-accent transition"
+                      >Login</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="signup.html"
+                      class="text-secondary hover:text-accent transition"
+                      >Sign Up</a
+                    >
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold mb-4 text-primary">Legal</h3>
+                <ul class="space-y-2">
+                  <li>
+                    <a href="privacy.html" class="text-accent transition"
+                      >Privacy Policy</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="terms.html"
+                      class="text-secondary hover:text-accent transition"
+                      >Terms of Service</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="cookie-policy.html"
+                      class="text-secondary hover:text-accent transition"
+                      >Cookie Policy</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pt-8 border-t border-color flex flex-col md:flex-row justify-between items-center"
+          >
+            <p class="text-secondary mb-4 md:mb-0">
+              © 2025 XoNote. All rights reserved.
+            </p>
+            <div class="flex space-x-4">
+              <a href="#" class="text-secondary hover:text-accent transition"
+                ><i class="bx bxl-facebook text-xl"></i
+              ></a>
+              <a href="#" class="text-secondary hover:text-accent transition"
+                ><i class="bx bxl-twitter text-xl"></i
+              ></a>
+              <a href="#" class="text-secondary hover:text-accent transition"
+                ><i class="bx bxl-instagram text-xl"></i
+              ></a>
+              <a href="#" class="text-secondary hover:text-accent transition"
+                ><i class="bx bxl-github text-xl"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      // DOM Elements
+      const loadingScreen = document.getElementById("loading-screen");
+      const loadingProgress = document.getElementById("loading-progress");
+      const appContainer = document.getElementById("app");
+      const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      // Mobile menu toggle
+      mobileMenuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+      });
+
+      // Animate loading progress bar
+      function animateLoading() {
+        if (!loadingProgress) return;
+
+        let width = 0;
+        const interval = setInterval(() => {
+          width += 1;
+          loadingProgress.style.width = `${Math.min(width, 90)}%`;
+
+          if (width >= 90) {
+            clearInterval(interval);
+          }
+        }, 20);
+      }
+
+      // Start loading animation
+      animateLoading();
+
+      // Hide loading screen after content is loaded
+      window.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          if (loadingProgress) loadingProgress.style.width = "100%";
+          setTimeout(() => {
+            loadingScreen.classList.add("fade-out");
+            setTimeout(() => {
+              loadingScreen.classList.add("hidden");
+              appContainer.classList.remove("hidden");
+              appContainer.classList.add("fade-in");
+            }, 300);
+          }, 400);
+        }, 800);
+      });
+    </script>
+  </body>
+</html>
